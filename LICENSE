@@ -1,21 +1,42 @@
-MIT License
+Copyright (c) 2025 Lucky 🥞
 
-Copyright (c) 2025 Lucky?🥞
+All Rights Reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This software repository and all associated files, code, assets, and documentation (collectively referred to as "the Code") are protected by copyright law and are the exclusive intellectual property of the author.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Permission to view the Code is hereby granted under the following terms and conditions:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. **NO RIGHTS GRANTED TO USE, COPY, MODIFY, OR DISTRIBUTE**  
+   Except where explicitly stated in this license, no one is permitted to:
+   - Copy or reproduce any portion of the Code in any form or by any means;
+   - Modify, adapt, translate, reverse engineer, or create derivative works based on the Code;
+   - Redistribute, republish, or reuse the Code, in whole or in part, for any purpose, including but not limited to personal, educational, or commercial use;
+   - Incorporate any portion of the Code into other software or projects.
+
+2. **CONTRIBUTORS ONLY EXCEPTION**  
+   Limited rights are granted exclusively to individuals who:
+   - Are submitting commits or pull requests **directly** to this repository **for the purpose of collaboration** on the original project;
+   - Understand and agree that any contributions become part of this repository and may be subject to the same licensing terms;
+   - Have received prior approval from Lucky 🥞, or have followed officially documented contribution guidelines for the nullcampus project.
+
+   Anyone contributing must not copy code from other sources unless the original license permits it, and they must not re-use code from this repository elsewhere.
+
+3. **NO CODE THEFT**  
+   Any attempt to copy, extract, clone, fork, reproduce, re-upload, or otherwise misappropriate the Code outside the bounds of this repository without explicit written permission is strictly prohibited and may result in:
+   - Takedown notices under the DMCA or applicable law;
+   - Legal action for copyright infringement;
+   - Public shame, if warranted.
+
+4. **NO LICENSE IS GRANTED TO USE THIS CODE**  
+   This repository (nullcampus) is for **educational viewing only**. The Code may not be executed, compiled, or used in any operational or production environment without explicit permission.
+
+5. **DISCLAIMER OF WARRANTY**  
+   The Code is provided "as is", with no warranty of any kind. Lucky 🥞 is not liable for any damages, misuse, or consequences resulting from any interaction with this repository.
+
+6. **YOU HAVE BEEN WARNED**  
+   By accessing or viewing this repository, you acknowledge that you have read, understood, and agreed to these terms. If you do not agree, close this tab and forget you ever saw this code.
+
+---
+
+For permission requests, legal inquiries, or collaboration proposals, please contact:  
+https://github.com/LuckiestFemboy/nullcampus
