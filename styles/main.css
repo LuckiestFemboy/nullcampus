@@ -1,0 +1,592 @@
+:root {
+    --kz-orange: #fb9d4c;
+}
+
+@font-face {
+    font-family: "SF-Pro";
+    src: url("fonts/SF-Pro.ttf") format("truetype"); /* Assuming this font file exists */
+}
+
+* {
+    font-family: "SF-Pro", sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: #c27725 #222;
+    box-sizing: border-box;
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
+}
+
+/* Custom Scrollbar Styles */
+*::-webkit-scrollbar {
+    width: 5px;
+}
+*::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #c27725;
+}
+*::-webkit-scrollbar-track {
+    background-color: #202020;
+}
+
+body {
+    background-color: #121212;
+    margin: 0;
+    padding: 20px 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+.website {
+    background-color: #151515;
+    width: 90%;
+    max-width: 1500px; /* Max width for the entire website content */
+    margin: 0 auto;
+    border-radius: 8px;
+    min-height: calc(100vh - 40px); /* Adjust min-height to account for body padding */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Added subtle shadow for depth */
+}
+
+.container {
+    width: 100%; /* Takes full width of .website */
+    display: block;
+    padding: 0 20px; /* Added padding to container for inner content */
+}
+
+/* Navigation Bar Styles */
+.nav {
+    background-color: #202020;
+    width: 100%; /* Takes full width of .website */
+    height: 70px; /* Adjusted height to be more compact like the screenshot */
+    margin: 0 auto 30px auto; /* Increased bottom margin for separation */
+    border-radius: 8px;
+    padding: 0 20px; /* Adjusted padding to match .container */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow for navigation bar */
+}
+
+.logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-right: 30px; /* Space between logo and nav links */
+}
+
+/* Style for the orange part of the logo */
+.orange-text {
+    color: var(--kz-orange);
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px; /* Spacing between navigation links */
+}
+
+.nav-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.2s ease; /* Smooth color transition on hover */
+}
+
+.nav-link:hover {
+    color: var(--kz-orange);
+}
+
+.nav-link.active {
+    color: var(--kz-orange); /* Active link color */
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--kz-orange);
+    border-radius: 2px; /* Underline for active link */
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between action buttons/icons */
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: color 0.2s ease, background-color 0.2s ease; /* Smooth transitions */
+}
+
+.icon-button:hover {
+    color: var(--kz-orange);
+    background-color: #2a2a2a; /* Background on hover */
+}
+
+.premium-button {
+    background-color: var(--kz-orange);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease, filter 0.2s ease; /* Smooth transitions */
+    margin-left: 10px;
+}
+
+.premium-button:hover {
+    filter: brightness(1.1); /* Slightly brighter on hover */
+}
+
+/* Hero Section Styles */
+.hero-section {
+    background-color: #202020;
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow for hero section */
+}
+
+.hero-section h1 {
+    color: #fff;
+    font-size: 36px;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.stats-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    color: #ccc;
+    font-size: 15px;
+}
+
+.stat-item span {
+    color: var(--kz-orange);
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+/* Skord Menu Feature Styles */
+.skord-feature {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 30px; /* Space from stats */
+    border: 1px solid #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Centered content */
+}
+
+.skord-feature h2 {
+    color: var(--kz-orange);
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.skord-feature p {
+    color: #ccc;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skord-button {
+    background-color: var(--kz-orange);
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, filter 0.2s ease;
+    text-decoration: none; /* For anchor tag */
+    display: inline-block; /* For anchor tag */
+}
+
+.skord-button:hover {
+    filter: brightness(1.1);
+}
+
+
+/* Content Sections Styles */
+.section-title {
+    color: #fff;
+    font-size: 24px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--kz-orange); /* Underline effect */
+    padding-bottom: 10px;
+    display: inline-block; /* Ensures underline only spans text */
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 25px; /* Spacing between cards */
+}
+
+.card {
+    background-color: #202020;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effects */
+    display: flex;
+    flex-direction: column;
+    position: relative; /* For positioning inner elements */
+    padding-bottom: 15px; /* Space for download button */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+.card-image-section {
+    position: relative;
+    width: 100%;
+    height: 180px; /* Fixed height for image section */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px); /* Blurred background */
+    transform: scale(1.1); /* Slightly upscale for blur effect */
+}
+
+.card-main-icon {
+    position: relative; /* To ensure it's above the blurred background */
+    width: 100px; /* Size of the main icon */
+    height: 100px;
+    object-fit: contain;
+    border-radius: 8px; /* Rounded corners for the icon */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Shadow for the icon */
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #2a2a2a; /* Slightly lighter background for header */
+    border-bottom: 1px solid #333;
+    font-size: 13px;
+    color: #ccc;
+}
+
+.card-header .profile-pic {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+.card-header .user-id {
+    font-weight: 500;
+    color: #eee;
+}
+
+.card-header .item-id {
+    margin-left: auto;
+    background-color: #333;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--kz-orange);
+    font-weight: bold;
+}
+
+
+.card-content {
+    padding: 15px;
+    flex-grow: 1; /* Allows content to take available space */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h3 {
+    color: var(--kz-orange);
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.card-content p {
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Allows description to push meta to bottom */
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #888;
+    margin-top: auto; /* Pushes meta to the bottom */
+    padding: 0 15px 15px; /* Padding for meta, aligns with content */
+}
+
+.card-meta .rating {
+    color: gold; /* Star color */
+}
+
+.card-meta .difficulty {
+    background-color: #333;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.card-download-button {
+    background-color: var(--kz-orange);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, filter 0.2s ease;
+    text-decoration: none;
+    display: flex; /* Use flex to center icon and text */
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 30px); /* Adjust width for padding */
+    margin: 0 15px 15px; /* Centered with bottom margin */
+}
+
+.card-download-button:hover {
+    filter: brightness(1.1);
+}
+
+.card-download-button i {
+    margin-right: 8px;
+}
+
+
+/* Styles for the "Other Ways to Get Involved" section */
+.get-involved-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #333; /* Separator line */
+}
+
+.get-involved-section h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.get-involved-section p {
+    color: #ccc;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.involved-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.involved-card {
+    background-color: #202020;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content to top, button to bottom */
+}
+
+.involved-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.involved-card h3 {
+    color: var(--kz-orange);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.involved-card p {
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.involved-card .card-link {
+    color: var(--kz-orange);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    margin-top: auto; /* Pushes link to the bottom */
+    transition: color 0.2s ease;
+}
+
+.involved-card .card-link:hover {
+    color: #d17c3b; /* Slightly darker orange on hover */
+}
+
+.involved-card .card-link i {
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+/* Removed special styling for .featured-card as per user request */
+/*
+.featured-card {
+    border: 2px solid var(--kz-orange);
+    box-shadow: 0 5px 20px rgba(251, 157, 76, 0.3);
+    transform: scale(1.02);
+    z-index: 1;
+}
+
+.featured-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(251, 157, 76, 0.5);
+}
+*/
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .nav-links {
+        gap: 15px;
+    }
+    .hero-section h1 {
+        font-size: 30px;
+    }
+    .skord-feature h2 {
+        font-size: 28px;
+    }
+    .skord-feature p {
+        font-size: 15px;
+    }
+    .skord-button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    .nav-actions {
+        margin-top: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+    .logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .hero-section {
+        padding: 30px;
+    }
+    .hero-section h1 {
+        font-size: 26px;
+    }
+    .stats-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .skord-feature {
+        padding: 20px;
+    }
+    .skord-feature h2 {
+        font-size: 24px;
+    }
+    .skord-feature p {
+        font-size: 14px;
+    }
+    .skord-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    .card-grid {
+        grid-template-columns: 1fr; /* Stack cards on small screens */
+    }
+    .involved-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px 0;
+    }
+    .website {
+        width: 95%;
+        padding: 15px;
+    }
+    .nav {
+        width: calc(100% - 30px);
+    }
+    .hero-section h1 {
+        font-size: 22px;
+    }
+    .skord-feature h2 {
+        font-size: 20px;
+    }
+    .skord-feature p {
+        font-size: 13px;
+    }
+    .skord-button {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    .section-title {
+        font-size: 20px;
+    }
+}
