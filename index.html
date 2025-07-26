@@ -3,6 +3,7 @@
     <head>
         <title>Home | Nullcampus</title>
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/legal.css">
         <!-- Font Awesome for icons (home, community, download, discord, support, plus, search) -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -213,25 +214,22 @@
                 </div>
 
                 <!-- Other Ways to Get Involved Section -->
-                <div class="get-involved-section">
-                    <h2>Other Ways to Get Involved</h2>
-                    <p>We're an open community for sharing resources, collaborating, and making connections.</p>
-                    <div class="involved-cards-grid">
-                        <div class="involved-card">
-                            <h3>Make Themes or Scripts</h3>
-                            <p>Share your custom themes, scripts, or bypasses with the community and get recognized!</p>
-                            <a href="#" class="card-link">Contribute Now <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        <div class="involved-card">
-                            <h3>Join Discussions</h3>
-                            <p>Chat with experienced members, receive customized support, and share your insights!</p>
-                            <a href="#" class="card-link">Join Forum <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        <div class="involved-card">
-                            <h3>Join Discord</h3>
-                            <p>Our Discord server is a great place to collaborate, share your creations, and get real-time support.</p>
-                            <a href="https://discord.gg/YTysGsnvmC" target="_blank" class="card-link">Join Server <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                <h2 class="section-title">Other Ways to Get Involved</h2>
+                <div class="involved-cards-grid">
+                    <div class="involved-card">
+                        <h3>Make Themes or Scripts</h3>
+                        <p>Share your custom themes, scripts, or bypasses with the community and get recognized!</p>
+                        <a href="#" class="card-link">Contribute Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="involved-card">
+                        <h3>Join Discussions</h3>
+                        <p>Chat with experienced members, receive customized support, and share your insights!</p>
+                        <a href="#" class="card-link">Join Forum <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="involved-card">
+                        <h3>Join Discord</h3>
+                        <p>Our Discord server is a great place to collaborate, share your creations, and get real-time support.</p>
+                        <a href="https://discord.gg/YTysGsnvmC" target="_blank" class="card-link">Join Server <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -239,6 +237,25 @@
 
         </div>
 
+        <!-- Terms of Service Modal -->
+        <div id="tosModal" class="tos-modal-overlay" style="display: none;">
+            <div class="tos-modal-content">
+                <h2>Terms of Service</h2>
+                <p>Welcome to Nullcampus. By continuing to use this website, you agree to the following terms and conditions:</p>
+                <ul>
+                    <li>The content and tools provided on this site are for <b>educational purposes only</b>.</li>
+                    <li>We <b>do not endorse or promote illegal activities</b>. Any misuse of information is at your own risk.</li>
+                    <li>You are responsible for adhering to your school's policies and local laws.</li>
+                    <li>We are not liable for any damages or consequences resulting from the use of this site's content.</li>
+                    <li>Respect privacy and intellectual property rights.</li>
+                </ul>
+                <p>By clicking "Accept", you acknowledge that you have read, understood, and agree to these terms.</p>
+                <p>Please note that "Lucky?" and "EvanRunner" take literally no responsibility for any outcomes or consequences arising from the use of the tools or information provided on this site.</p>
+                <button id="acceptTosButton" class="tos-accept-button">Accept and Continue</button>
+            </div>
+        </div>
+
+        <script src="scripts/legal.js"></script>
 
     </body>
 </html>
