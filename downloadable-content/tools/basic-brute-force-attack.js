@@ -40,9 +40,12 @@
     let currentCharacters = customCharacters; // Dynamic character set
     let speedMultiplier = 1; // Default speed multiplier (1x)
 
-    // New Safe Mode variables
+    // Safe Mode variables
     let safeModeEnabled = false; // Default for safe mode
     let maxRangeMs = 100; // Default max range for safe mode (when enabled)
+
+    // New: Username optional variable
+    let requireUsername = true; // Default: username is required
 
     const baseCharacterSet = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=';
     const uppercaseCharacterSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -62,8 +65,9 @@
             autofillUsernameOnEachAttempt: autofillUsernameOnEachAttempt,
             customCharacters: customCharacters,
             speedMultiplier: speedMultiplier,
-            safeModeEnabled: safeModeEnabled, // Save safe mode status
-            maxRangeMs: maxRangeMs // Save max range for safe mode
+            safeModeEnabled: safeModeEnabled,
+            maxRangeMs: maxRangeMs,
+            requireUsername: requireUsername // Save new setting
         };
         try {
             localStorage.setItem('blbf_settings', JSON.stringify(settings));
@@ -86,8 +90,9 @@
                 autofillUsernameOnEachAttempt = settings.autofillUsernameOnEachAttempt !== undefined ? settings.autofillUsernameOnEachAttempt : autofillUsernameOnEachAttempt;
                 customCharacters = settings.customCharacters !== undefined ? settings.customCharacters : customCharacters;
                 speedMultiplier = settings.speedMultiplier !== undefined ? settings.speedMultiplier : speedMultiplier;
-                safeModeEnabled = settings.safeModeEnabled !== undefined ? settings.safeModeEnabled : safeModeEnabled; // Load safe mode status
-                maxRangeMs = settings.maxRangeMs !== undefined ? settings.maxRangeMs : maxRangeMs; // Load max range for safe mode
+                safeModeEnabled = settings.safeModeEnabled !== undefined ? settings.safeModeEnabled : safeModeEnabled;
+                maxRangeMs = settings.maxRangeMs !== undefined ? settings.maxRangeMs : maxRangeMs;
+                requireUsername = settings.requireUsername !== undefined ? settings.requireUsername : requireUsername; // Load new setting
 
                 // Update currentCharacters based on loaded settings
                 currentCharacters = includeCapitalized ? customCharacters + uppercaseCharacterSet : customCharacters;
@@ -274,7 +279,7 @@
         </div>
         <div style="margin-bottom: 15px;">
             <label for="varianceInput" style="display: block; margin-bottom: 5px; color: var(--text-muted);">Rate Variance (ms) (Normal Mode):</label>
-            <input type="number" id="varianceInput" value="${autofillRateVariance}" min="0" style="width: 100%; padding: 8px; border: 1px solid var(--input-border); border-radius: 4px; background-color: var(--input-bg); color: var(--text-light); outline: none;">
+            <input type="number" id="varianceInput" value="${autofillRateVariance}" min="0" style="width: 100%; padding: 8px; border: 1px solid var(--input-border); border-radius: 44px; background-color: var(--input-bg); color: var(--text-light); outline: none;">
         </div>
         <div style="margin-bottom: 15px;">
             <label for="speedSlider" style="display: block; margin-bottom: 5px; color: var(--text-muted);">Speed Multiplier: <span id="speedValue">${speedMultiplier}x</span></label>
@@ -319,6 +324,10 @@
         <div style="margin-bottom: 15px;">
             <label for="customCharactersInput" style="display: block; margin-bottom: 5px; color: var(--text-muted);">Custom Characters:</label>
             <textarea id="customCharactersInput" style="width: 100%; height: 60px; padding: 8px; border: 1px solid var(--input-border); border-radius: 4px; background-color: var(--input-bg); color: var(--text-light); font-size: 0.9em; outline: none; resize: vertical;">${customCharacters}</textarea>
+        </div>
+        <div style="margin-bottom: 15px; display: flex; align-items: center;">
+            <input type="checkbox" id="requireUsernameCheckbox" ${requireUsername ? 'checked' : ''} style="margin-right: 10px;">
+            <label for="requireUsernameCheckbox" style="color: var(--text-muted);">Require Username</label>
         </div>
         <button id="saveSettingsButton" class="inspector-button" style="width: 100%; padding: 10px; border: 1px solid var(--input-border); border-radius: 4px; background-color: var(--secondary-color); color: #fff; outline: none; cursor: pointer;">
             Save Settings
@@ -437,6 +446,9 @@
     const safeModeCheckbox = document.getElementById('safeModeCheckbox');
     const maxRangeMsInput = document.getElementById('maxRangeMsInput');
 
+    // Username optional elements
+    const requireUsernameCheckbox = document.getElementById('requireUsernameCheckbox');
+
 
     // New buttons to open/close settings and log windows
     const openSettingsButton = document.getElementById('openSettingsButton');
@@ -453,6 +465,22 @@
         safeModeEnabled = safeModeCheckbox.checked;
         maxRangeMsInput.disabled = !safeModeEnabled; // Enable/disable max range input
         logAction(`Safe Mode ${safeModeEnabled ? 'enabled' : 'disabled'}.`);
+    });
+
+    // Event listener for Require Username checkbox
+    requireUsernameCheckbox.addEventListener('change', () => {
+        requireUsername = requireUsernameCheckbox.checked;
+        consoleUsernameButton.disabled = !requireUsername; // Disable/enable username selection button
+        yourUsernameInput.disabled = !requireUsername; // Disable/enable username autofill input
+
+        if (!requireUsername) {
+            logAction('Username requirement disabled. Username field will be ignored.');
+            selectedUsernameElement = null; // Clear selected username element if no longer required
+            // Optionally clear the username input value as well
+            yourUsernameInput.value = '';
+        } else {
+            logAction('Username requirement enabled. Please select a username field.');
+        }
     });
 
 
@@ -481,6 +509,12 @@
      * @param {string} fieldType - 'username', 'password', or 'loginButton'
      */
     function activateSelectionMode(fieldType) {
+        // Prevent activation if username is not required and trying to select username
+        if (fieldType === 'username' && !requireUsername) {
+            logAction('Cannot select username field: Username is not required in settings.');
+            return;
+        }
+
         isSelectingElement = true;
         currentFieldToPopulate = fieldType;
         consoleResultInput.value = `Click on an element on the page to inspect.`;
@@ -508,6 +542,7 @@
         const clickedElement = event.target;
         const elementId = clickedElement.id || 'No ID';
         const elementClass = clickedElement.className || 'No Class';
+        const tagName = clickedElement.tagName.toLowerCase(); // Get the tag name
 
         // Store the selected element reference
         if (currentFieldToPopulate === 'username') {
@@ -520,10 +555,10 @@
 
 
         // Update the result input field in the inspector
-        const collectedInfoMessage = `Locked in! ID: "${elementId}", Class: "${elementClass}"`;
+        const collectedInfoMessage = `Selected ${currentFieldToPopulate} field: <${tagName}> (ID: "${elementId}", Class: "${elementClass}")`;
         consoleResultInput.value = collectedInfoMessage;
         consoleResultInput.style.color = 'var(--success-text)';
-        logAction(`Collected info for ${currentFieldToPopulate}: ${collectedInfoMessage}`);
+        logAction(`Successfully selected ${currentFieldToPopulate} element: <${tagName}> (ID: "${elementId}", Class: "${elementClass}")`);
 
 
         // Deactivate selection mode after an element is selected
@@ -593,7 +628,7 @@
         }
 
         // Check if elements still exist in the DOM
-        if (!document.body.contains(selectedUsernameElement)) {
+        if (requireUsername && !document.body.contains(selectedUsernameElement)) {
             logAction('Error: Selected Username field no longer exists in the DOM. Stopping guessing.');
             isGuessingPasswords = false;
             statusDisplay.textContent = 'Status: Stopped (Username field missing)';
@@ -612,8 +647,8 @@
             return;
         }
 
-        // Autofill username every time a password is tried, if enabled
-        if (autofillUsernameOnEachAttempt) {
+        // Autofill username every time a password is tried, if enabled AND required
+        if (requireUsername && autofillUsernameOnEachAttempt) {
             const usernameToAutofill = yourUsernameInput.value;
             if (selectedUsernameElement.tagName === 'INPUT' && selectedUsernameElement.type === 'text') {
                 selectedUsernameElement.value = usernameToAutofill;
@@ -671,16 +706,25 @@
             return;
         }
 
-        if (!selectedUsernameElement || !selectedPasswordElement || !selectedLoginButtonElement) {
-            logAction('Please select Username Field, Password Field, and Login Button first.');
+        // Check if login button and password field are selected (always required)
+        if (!selectedPasswordElement || !selectedLoginButtonElement) {
+            logAction('Please select Password Field and Login Button first.');
             return;
         }
 
-        // Initial check for username element existence and type before starting the loop
-        if (!document.body.contains(selectedUsernameElement) || !(selectedUsernameElement.tagName === 'INPUT' && selectedUsernameElement.type === 'text')) {
-            logAction('Error: Selected Username field is invalid or no longer exists. Cannot start guessing.');
-            return;
+        // Conditional check for username field
+        if (requireUsername) {
+            if (!selectedUsernameElement) {
+                logAction('Username is required. Please select Username Field first.');
+                return;
+            }
+            // Initial check for username element existence and type before starting the loop
+            if (!document.body.contains(selectedUsernameElement) || !(selectedUsernameElement.tagName === 'INPUT' && selectedUsernameElement.type === 'text')) {
+                logAction('Error: Selected Username field is invalid or no longer exists. Cannot start guessing.');
+                return;
+            }
         }
+
 
         // Validate safe mode range if enabled
         if (safeModeEnabled) {
@@ -696,7 +740,7 @@
         currentPasswordAttempt = ''; // Will be initialized by generateNextPassword
 
         statusDisplay.textContent = 'Status: Running...';
-        logAction(`Starting password guessing with min length ${minPasswordLength} and max length ${maxPasswordLength}. Character set size: ${currentCharacters.length}. Speed: ${speedMultiplier}x. Safe Mode: ${safeModeEnabled ? 'Enabled' : 'Disabled'}`);
+        logAction(`Starting password guessing with min length ${minPasswordLength} and max length ${maxPasswordLength}. Character set size: ${currentCharacters.length}. Speed: ${speedMultiplier}x. Safe Mode: ${safeModeEnabled ? 'Enabled' : 'Disabled'}. Require Username: ${requireUsername ? 'Yes' : 'No'}`);
         attemptPassword(); // Start the guessing loop
     });
 
@@ -728,6 +772,7 @@
         const newSpeedMultiplier = parseInt(speedSlider.value, 10);
         const newSafeModeEnabled = safeModeCheckbox.checked; // Get safe mode status
         const newMaxRangeMs = parseInt(maxRangeMsInput.value, 10); // Get max range for safe mode
+        const newRequireUsername = requireUsernameCheckbox.checked; // Get require username status
 
         let settingsChanged = false;
 
@@ -801,6 +846,12 @@
             maxRangeMsInput.value = maxRangeMs;
         }
 
+        if (requireUsername !== newRequireUsername) {
+            requireUsername = newRequireUsername;
+            settingsChanged = true;
+            logAction(`Require Username set to: ${requireUsername ? 'Yes' : 'No'}.`);
+        }
+
         // Rebuild currentCharacters based on latest settings
         currentCharacters = includeCapitalized ? customCharacters + uppercaseCharacterSet : customCharacters;
         if (settingsChanged) {
@@ -824,6 +875,9 @@
             safeModeCheckbox.checked = safeModeEnabled; // Set safe mode checkbox
             maxRangeMsInput.value = maxRangeMs; // Set max range input
             maxRangeMsInput.disabled = !safeModeEnabled; // Disable/enable based on safe mode
+            requireUsernameCheckbox.checked = requireUsername; // Set require username checkbox
+            consoleUsernameButton.disabled = !requireUsername; // Update username select button state
+            yourUsernameInput.disabled = !requireUsername; // Update username input state
 
             settingsWindow.style.display = 'block';
             centerWindow(settingsWindow);
