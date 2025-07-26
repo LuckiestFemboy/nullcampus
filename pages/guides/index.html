@@ -17,11 +17,11 @@
             <div class="nav" id="mainNav">
                 <div class="logo">NULL<span class="orange-text">CAMPUS</span></div>
                 <div class="nav-links">
-                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="../../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
                     <a href="https://nullcampus.freeforums.net/" target="_blank" class="nav-link"><i class="fas fa-users"></i> Forums</a>
-                    <a href="#" class="nav-link"><i class="fas fa-download"></i> Downloads</a>
+                    <a href="../downloads/index.html" class="nav-link"><i class="fas fa-download"></i> Downloads</a>
                     <a href="https://discord.gg/YTysGsnvmC" target="_blank" class="nav-link"><i class="fab fa-discord"></i> Discord</a>
-                    <a href="guides.html" class="nav-link active"><i class="fas fa-book"></i> Guides</a>
+                    <a href="index.html" class="nav-link active"><i class="fas fa-book"></i> Guides</a>
                 </div>
                 <div class="nav-actions">
                     <button class="premium-button">Donate</button>
@@ -30,6 +30,12 @@
 
             <div class="container">
                 <h2 class="section-title">Guides & How-To's</h2>
+
+                <!-- Search Bar for Guides -->
+                <div class="search-bar-container">
+                    <input type="text" id="guideSearch" placeholder="Search guides..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
 
                 <div class="guides-section">
                     <div class="guide-item">
@@ -368,7 +374,14 @@
             </div>
         </div>
 
-        <script src="scripts/legal.js"></script> <!-- Keep this for the ToS modal -->
+        <script src="../../scripts/legal.js"></script>
+        <script src="../../scripts/search.js"></script>
+        <script>
+            // Initialize search for guides page
+            document.addEventListener('DOMContentLoaded', () => {
+                setupSearch('guideSearch', '.guide-item', '.guide-title-label');
+            });
+        </script>
 
     </body>
 </html>
