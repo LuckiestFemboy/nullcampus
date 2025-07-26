@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Guides | Nullcampus</title>
+        <link rel="stylesheet" href="../../styles/main.css">
+        <link rel="stylesheet" href="../../styles/legal.css">
+        <link rel="icon" href="../../media/favicon.png">
+        <!-- Font Awesome for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <div class="website">
+
+            <!-- Navigation Bar -->
+            <div class="nav" id="mainNav">
+                <div class="logo">NULL<span class="orange-text">CAMPUS</span></div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="https://nullcampus.freeforums.net/" target="_blank" class="nav-link"><i class="fas fa-users"></i> Forums</a>
+                    <a href="#" class="nav-link"><i class="fas fa-download"></i> Downloads</a>
+                    <a href="https://discord.gg/YTysGsnvmC" target="_blank" class="nav-link"><i class="fab fa-discord"></i> Discord</a>
+                    <a href="guides.html" class="nav-link active"><i class="fas fa-book"></i> Guides</a>
+                </div>
+                <div class="nav-actions">
+                    <button class="premium-button">Donate</button>
+                </div>
+            </div>
+
+            <div class="container">
+                <h2 class="section-title">Guides & How-To's</h2>
+
+                <div class="guides-section">
+                    <div class="guide-item">
+                        <input type="checkbox" id="guide1" class="guide-checkbox">
+                        <label for="guide1" class="guide-title-label">How to Install a Script</label>
+                        <div class="guide-content">
+                            <p>This guide will walk you through two common methods for installing a script from Nullcampus onto your system. Please follow the instructions carefully to ensure proper functionality.</p>
+
+                            <h4>Method 1: Direct Console Injection (Temporary)</h4>
+                            <p>This method is quick for testing or one-time use, but the script will disappear if you refresh the page or navigate away.</p>
+                            <ol>
+                                <li>Download the script file from the Downloads section.</li>
+                                <li>Locate the downloaded file (usually a `.js` or `.zip`). If it's a `.zip`, extract the `.js` file.</li>
+                                <li>Open your web browser's developer tools (usually by pressing <kbd>F12</kbd> or right-clicking on the page and selecting "Inspect" or "Inspect Element").</li>
+                                <li>Navigate to the "Console" tab within the developer tools.</li>
+                                <li>Open the `.js` script file in a text editor (like Notepad, VS Code, or even your browser's file viewer).</li>
+                                <li>Copy the *entire content* of the script file.</li>
+                                <li>Paste the copied JavaScript code into the console and press <kbd>Enter</kbd>.</li>
+                                <li>If the script is designed to create an interface (like Skord Menu or Basic Login Brute Force), a small orange dot should appear in the top-left corner of your browser window, indicating the script is running. Click this dot to open its main interface.</li>
+                                <li>Verify the script is running correctly and its interface appears as expected.</li>
+                            </ol>
+
+                            <h4>Method 2: Using Skord Menu's Script Injector (Persistent)</h4>
+                            <p>This method allows you to save scripts, manage them, and have them automatically run on specific sites. This is recommended for scripts you plan to use regularly.</p>
+                            <ol>
+                                <li>First, ensure the Skord Menu script itself is running on the page (use Method 1 for Skord Menu if it's not already active).</li>
+                                <li>Open the Skord Menu by clicking the orange dot in the top-left corner or pressing the <kbd>~</kbd> (tilde) key.</li>
+                                <li>In the Skord Menu, navigate to the "Dev Tools" section and make sure "Toggle Script Injector" is set to "ON". This will make the "Script Injector" option visible in the main sidebar.</li>
+                                <li>Now, go to the "Script Injector" tab in the Skord Menu's sidebar.</li>
+                                <li>Download the script file you want to install from the Nullcampus Downloads section.</li>
+                                <li>Open the downloaded `.js` script file in a text editor and copy its *entire content*.</li>
+                                <li>In the Skord Menu's "Script Injector" tab:
+                                    <ul>
+                                        <li>In the "Script Name" field, give your script a descriptive name (e.g., "My Custom Ad Blocker").</li>
+                                        <li>Paste the copied JavaScript code into the large "JavaScript Textarea".</li>
+                                        <li>Use the "Apply to:" dropdown to select where this script should run:
+                                            <ul>
+                                                <li><b>All Sites:</b> Runs on every website you visit.</li>
+                                                <li><b>Current URL:</b> Runs only on the exact URL you are currently on.</li>
+                                                <li><b>Current Domain:</b> Runs on any page within the current website's domain (e.g., `example.com`, `sub.example.com`).</li>
+                                                <li><b>Custom URLs/Domains:</b> Allows you to enter specific URLs or domains, separated by commas, where the script should run.</li>
+                                            </ul>
+                                        </li>
+                                        <li>Click the "Save Current Script" button. This will save the script to your Skord Menu's persistent storage.</li>
+                                    </ul>
+                                </li>
+                                <li>After saving, the script will appear in the "Saved Scripts" list (you might need to switch to the "Saved Scripts" tab within the Script Injector).</li>
+                                <li>To activate the script, click the "Enable" button next to its name in the "Saved Scripts" list. It will now automatically run on pages matching your chosen "Apply to" setting.</li>
+                                <li>You can always return to the "Script Injector" to "Load" a saved script for editing, "Disable" it, or "Delete" it.</li>
+                            </ol>
+                            <p><b>Disclaimer:</b> Ensure you understand what the script does before running it. Use at your own risk. Always be cautious when injecting third-party scripts into your browser.</p>
+                        </div>
+                    </div>
+
+                    <div class="guide-item">
+                        <input type="checkbox" id="guide6" class="guide-checkbox">
+                        <label for="guide6" class="guide-title-label">Understanding and Using the Skord Menu</label>
+                        <div class="guide-content">
+                            <p>The Skord Menu is a powerful, all-in-one browser extension designed to enhance your browsing experience with a suite of developer tools, customization options, and utility features. This guide will walk you through its main functionalities.</p>
+
+                            <h4>Getting Started:</h4>
+                            <ol>
+                                <li><b>Inject the Script:</b> Follow the "How to Install a Script" guide to get the Skord Menu script running on any webpage.</li>
+                                <li><b>Open the Menu:</b> A small orange dot will appear in the top-left corner of your browser window. Click this dot, or press the `~` (tilde) key on your keyboard, to open the Skord Menu.</li>
+                                <li><b>Minimize/Close:</b> You can minimize the menu by clicking the yellow button in the titlebar, or close it by clicking the red button. Pressing `~` or `Escape` will also close/hide it.</li>
+                                <li><b>Fullscreen Mode:</b> Click the green button in the titlebar to toggle fullscreen mode. This expands the menu to fill the entire screen and prevents the underlying page from scrolling.</li>
+                            </ol>
+
+                            <h4>Sidebar Navigation:</h4>
+                            <p>The left sidebar provides access to all of Skord's features:</p>
+                            <ul>
+                                <li><b>About:</b> Information about the Skord Menu and its contributors.</li>
+                                <li><b>Features:</b> A comprehensive list of all functionalities offered by Skord.</li>
+                                <li><b>Dev Tools:</b> Access to developer utilities like Element Inspector, Console Viewer, and Network Interception controls.</li>
+                                <li><b>Performance:</b> Monitor real-time performance metrics (FPS, JS Heap, CPU usage).</li>
+                                <li><b>Light Editor:</b> Customize the visual appearance of the Skord Menu and the webpage (opacity, colors, font size, border radius).</li>
+                                <li><b>CSS Editor:</b> (Requires Dev Tools to be ON) Write, save, and manage custom CSS styles for specific websites or all sites.</li>
+                                <li><b>Script Injector:</b> (Requires Dev Tools to be ON) Write, save, and manage custom JavaScript scripts for specific websites or all sites.</li>
+                                <li><b>Script Library:</b> Browse and download pre-made scripts.</li>
+                                <li><b>Theme Library:</b> Browse and download pre-defined CSS themes.</li>
+                                <li><b>Cache:</b> Manage Skord Menu's saved data (settings, scripts, styles) including backup and restore options.</li>
+                                <li><b>Logs:</b> (Requires Dev Tools to be ON) View a real-time log of events and actions within Skord.</li>
+                                <li><b>Log Controls:</b> (Requires Dev Tools to be ON) Configure which types of events are logged (keyboard, mouse, network, errors, page swaps).</li>
+                                <li><b>Documentation:</b> This very guide you are reading!</li>
+                            </ul>
+
+                            <h4>Key Features Explained:</h4>
+
+                            <h5>1. Dev Tools:</h5>
+                            <ul>
+                                <li><b>Toggle Element Inspector:</b> Activates a mode where clicking elements on the webpage logs their ID, classes, and basic styles to the "Console Output".
+                                    <ul>
+                                        <li><b>Toggle Persistent Highlight:</b> When ON, the last inspected element remains highlighted on the page.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Console Output:</b> Displays live `console.log`, `console.warn`, and `console.error` messages from the current webpage. Click "Clear Console Logs" to empty it.</li>
+                                <li><b>Network Interceptor:</b>
+                                    <ul>
+                                        <li><b>Toggle Network Blocking:</b> Stops new network requests (e.g., images, scripts) from loading.</li>
+                                        <li><b>Toggle Network Logging:</b> Records all network requests and their status in the "Logs" tab.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Toggle CSS Editor / Script Injector:</b> These buttons enable/disable the respective tabs in the sidebar, making them visible or hidden.</li>
+                            </ul>
+
+                            <h5>2. Light Editor:</h5>
+                            <p>This section allows you to personalize Skord Menu's appearance and affect the current page's visuals.</p>
+                            <ul>
+                                <li><b>Page Opacity:</b> Adjusts the transparency of the entire webpage. You can choose to apply this opacity to the Skord Menu button itself.</li>
+                                <li><b>Accent Color:</b> Change the primary color used throughout the Skord Menu interface.
+                                    <ul>
+                                        <li><b>Rainbow Mode:</b> Toggles a dynamic rainbow animation for the accent color.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Font Size:</b> Adjust the text size within the Skord Menu for better readability.</li>
+                                <li><b>Border Radius:</b> Modify the roundness of the menu's corners and internal elements.</li>
+                                <li><b>Background Color / Text Color:</b> Customize the main background and text colors of the Skord Menu.</li>
+                                <li><b>Save Theme Settings:</b> Saves all your theme customizations to local storage so they persist across browser sessions.</li>
+                                <li><b>Reset Buttons:</b> Each setting has a "Reset" button to revert it to its default value. "Reset All Theme Settings" reverts everything.</li>
+                            </ul>
+
+                            <h5>3. CSS Editor:</h5>
+                            <p>A powerful tool for applying custom CSS to web pages. (Ensure "CSS Editor" is enabled in Dev Tools first).</p>
+                            <ul>
+                                <li><b>Editor Tab:</b>
+                                    <ul>
+                                        <li><b>Style Name:</b> Give your custom CSS a name.</li>
+                                        <li><b>Apply to:</b> Choose whether your CSS applies to "All Sites", the "Current URL", the "Current Domain", or "Custom URLs/Domains" (comma-separated list).</li>
+                                        <li><b>CSS Textarea:</b> Write or paste your CSS code here.</li>
+                                        <li><b>Apply:</b> Applies the CSS from the textarea to the current page immediately (not saved).</li>
+                                        <li><b>Clear Editor:</b> Clears the name and code from the editor.</li>
+                                        <li><b>Save Current Style:</b> Saves the CSS with its name and target sites to your browser's storage.</li>
+                                        <li><b>Files Sidebar:</b> Lists your saved styles. Click a style name to load it into the editor.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Saved Styles Tab:</b> Lists all your saved CSS styles.
+                                    <ul>
+                                        <li><b>Enable/Disable:</b> Toggles whether a saved style is actively applied to its target sites.</li>
+                                        <li><b>Load:</b> Loads the style into the editor for modification.</li>
+                                        <li><b>Delete:</b> Permanently removes a saved style.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h5>4. Script Injector:</h5>
+                            <p>Allows you to run and manage custom JavaScript code. (Ensure "Script Injector" is enabled in Dev Tools first).</p>
+                            <ul>
+                                <li><b>Editor Tab:</b>
+                                    <ul>
+                                        <li><b>Script Name:</b> Give your custom script a name.</li>
+                                        <li><b>Apply to:</b> Choose whether your script applies to "All Sites", the "Current URL", the "Current Domain", or "Custom URLs/Domains".</li>
+                                        <li><b>JavaScript Textarea:</b> Write or paste your JavaScript code here.</li>
+                                        <li><b>Execute:</b> Runs the code from the textarea immediately on the current page.</li>
+                                        <li><b>Clear:</b> Clears the name and code from the editor.</li>
+                                        <li><b>Save Current Script:</b> Saves the script with its name and target sites to your browser's storage.</li>
+                                        <li><b>Files Sidebar:</b> Lists your saved scripts. Click a script name to load it into the editor.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Saved Scripts Tab:</b> Lists all your saved JavaScript scripts.
+                                    <ul>
+                                        <li><b>Enable/Disable:</b> Toggles whether a saved script will automatically run on page load for its target sites.</li>
+                                        <li><b>Load:</b> Loads the script into the editor for modification.</li>
+                                        <li><b>Delete:</b> Permanently removes a saved script.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h5>5. Performance:</h5>
+                            <p>Provides real-time monitoring of your browser's performance metrics.</p>
+                            <ul>
+                                <li><b>Start/Stop Performance Monitor:</b> Toggles the display of:
+                                    <ul>
+                                        <li><b>FPS (Frames Per Second):</b> How smoothly the page is rendering.</li>
+                                        <li><b>JS Heap:</b> Memory usage by JavaScript on the page.</li>
+                                        <li><b>CPU Usage:</b> An estimate of CPU resources consumed by the page.</li>
+                                    </ul>
+                                </li>
+                                <li>Graphs are displayed to visualize these metrics over time.</li>
+                            </ul>
+
+                            <h5>6. Cache:</h5>
+                            <p>Manages the data stored by the Skord Menu extension.</p>
+                            <ul>
+                                <li><b>Clear All Skord Data:</b> Resets all settings, custom scripts, and custom styles to their defaults. This is a powerful action and requires confirmation.</li>
+                                <li><b>Clear Data for Specific URLs/Domains:</b> Removes scripts and styles specifically targeted to a URL or domain you enter.</li>
+                                <li><b>Download All Skord Data (JSON):</b> Creates a backup of all your Skord Menu data as a JSON file.</li>
+                                <li><b>Upload & Load Skord Data:</b> Restores data from a previously downloaded JSON file, overwriting your current data.</li>
+                            </ul>
+
+                            <h4>Important Notes:</h4>
+                            <ul>
+                                <li><b>Ethical Use:</b> Skord Menu, especially its Dev Tools, CSS Editor, and Script Injector, are powerful tools. They are intended for educational and legitimate development/testing purposes. Always use them responsibly and ethically, and only on websites where you have explicit permission. Unauthorized use can have legal consequences.</li>
+                                <li><b>Persistence:</b> Most settings, saved scripts, and styles are stored in your browser's local storage (or Chrome's extension storage) and will persist even after closing and reopening your browser.</li>
+                                <li><b>Browser Compatibility:</b> Skord Menu is designed for modern web browsers.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guide-item">
+                        <input type="checkbox" id="guide5" class="guide-checkbox">
+                        <label for="guide5" class="guide-title-label">How to Use the Basic Login Brute Force Script</label>
+                        <div class="guide-content">
+                            <p>The Basic Login Brute Force script is designed to help you understand how login forms can be tested by attempting various password combinations. This guide explains how to set up and use its interface.</p>
+
+                            <h4>Getting Started:</h4>
+                            <ol>
+                                <li><b>Inject the Script:</b> Follow the "How to Install a Script" guide to get the Basic Login Brute Force script running on the target page. An orange dot will appear in the top-left corner.</li>
+                                <li><b>Open Main Window:</b> Click the orange dot to open the main "Basic Login Brute Force" window.</li>
+                            </ol>
+
+                            <h4>Main Window Functions:</h4>
+                            <ul>
+                                <li><b>Select Username Field:</b> Click this button, then click on the username or email input field on the webpage you want to test. The script will highlight the selected element.</li>
+                                <li><b>Select Password Field:</b> Click this button, then click on the password input field on the webpage.</li>
+                                <li><b>Select Login Button:</b> Click this button, then click on the submit button (e.g., "Login", "Sign In") on the webpage.</li>
+                                <li><b>Your Username (for Autofill):</b> Enter the username you want the script to use for its attempts. This field will be autofilled if "Autofill Username on Each Attempt" is enabled in settings.</li>
+                                <li><b>Start Password Guessing:</b> Once all fields are selected and settings are configured, click this to begin the automated password attempts.</li>
+                                <li><b>Stop:</b> Click this to immediately halt the password guessing process.</li>
+                                <li><b>Open Settings:</b> Opens the "Settings" window where you can customize the script's behavior.</li>
+                                <li><b>Open Log:</b> Opens the "Activity Log" window to view the script's real-time actions and messages.</li>
+                                <li><b>Collected Info:</b> Displays information about the currently selected input fields and login button.</li>
+                                <li><b>Status Display:</b> Shows the current operational status of the script (e.g., "Stopped", "Running...").</li>
+                            </ul>
+
+                            <h4>Settings Window Functions:</h4>
+                            <p>Access this by clicking "Open Settings" in the main window.</p>
+                            <ul>
+                                <li><b>Base Autofill Rate (ms):</b> The base delay in milliseconds between each password attempt. A higher number means slower attempts.</li>
+                                <li><b>Enable Safe Mode:</b> When checked, the script uses a random delay between `Base Autofill Rate` and `Max Range (ms)` to make attempts less predictable. This is generally safer for not triggering security systems.</li>
+                                <li><b>Max Range (ms) (Safe Mode):</b> The upper limit for the random delay when Safe Mode is enabled. Must be higher than "Base Autofill Rate".</li>
+                                <li><b>Rate Variance (ms) (Normal Mode):</b> When Safe Mode is OFF, a random value up to this variance is added to the Base Autofill Rate.</li>
+                                <li><b>Speed Multiplier:</b> A slider to globally increase the speed of attempts. A higher multiplier reduces the delay between attempts.</li>
+                                <li><b>Min Password Length:</b> The minimum length of passwords the script will try.</li>
+                                <li><b>Max Password Length:</b> The maximum length of passwords the script will try.</li>
+                                <li><b>Include Capitalized Letters:</b> If checked, uppercase letters (A-Z) will be included in the character set for generating passwords.</li>
+                                <li><b>Autofill Username on Each Attempt:</b> If checked, the username field will be re-populated before each password attempt. Useful for pages that clear the username.</li>
+                                <li><b>Custom Characters:</b> Define the exact set of characters the script will use to generate passwords. Be careful with this; an empty or invalid set will prevent guessing.</li>
+                                <li><b>Require Username:</b> If unchecked, the script will not require a username field to be selected or autofilled, allowing you to test password fields directly.</li>
+                                <li><b>Save Settings:</b> Saves your current settings to your browser's local storage so they persist across sessions.</li>
+                            </ul>
+
+                            <h4>Activity Log Window Functions:</h4>
+                            <p>Access this by clicking "Open Log" in the main window.</p>
+                            <ul>
+                                <li><b>Activity Log Display:</b> Shows real-time messages about the script's operations, including selected elements, passwords being tried, and any errors or status updates.</li>
+                                <li><b>Clear Log:</b> Clears all messages from the activity log.</li>
+                            </ul>
+
+                            <h4>Important Considerations:</h4>
+                            <ul>
+                                <li><b>Ethical Use:</b> This tool is for educational purposes only. Do not use it on systems or accounts you do not have explicit permission to test. Unauthorized access is illegal.</li>
+                                <li><b>Browser Compatibility:</b> This script is designed for modern web browsers.</li>
+                                <li><b>Page Changes:</b> If the target webpage reloads or changes its HTML structure significantly, you may need to re-select the target elements.</li>
+                                <li><b>Performance:</b> Running at very high speeds or with long password lengths can consume significant computer resources.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guide-item">
+                        <input type="checkbox" id="guide2" class="guide-checkbox">
+                        <label for="guide2" class="guide-title-label">Understanding Network Restrictions</label>
+                        <div class="guide-content">
+                            <p>Learn about common types of network restrictions implemented in school environments, such as firewalls, content filters, and proxy servers. This guide provides a basic overview of how these systems work.</p>
+                            <ul>
+                                <li><b>Firewalls:</b> Block unauthorized access to or from a private network.</li>
+                                <li><b>Content Filters:</b> Prevent access to specific websites or content categories.</li>
+                                <li><b>Proxy Servers:</b> Act as an intermediary for requests from clients seeking resources from other servers.</li>
+                            </ul>
+                            <p>Knowing these basics can help you understand why certain sites or tools might be blocked.</p>
+                        </div>
+                    </div>
+
+                    <div class="guide-item">
+                        <input type="checkbox" id="guide3" class="guide-checkbox">
+                        <label for="guide3" class="guide-title-label">Creating Your Own Bypass</label>
+                        <div class="guide-content">
+                            <p>Interested in developing your own tools? This guide offers a starting point for understanding the concepts behind creating simple bypasses. It covers basic web technologies and common bypass techniques.</p>
+                            <p>Topics include:</p>
+                            <ul>
+                                <li>Basic HTML, CSS, and JavaScript.</li>
+                                <li>Understanding browser developer tools.</li>
+                                <li>Simple URL manipulation.</li>
+                                <li>Using VPNs and proxies (for educational understanding).</li>
+                            </ul>
+                            <p>This guide is for educational exploration of web security and network architecture.</p>
+                        </div>
+                    </div>
+
+                    <div class="guide-item">
+                        <input type="checkbox" id="guide4" class="guide-checkbox">
+                        <label for="guide4" class="guide-title-label">Optimizing Performance on School Computers (Especially Chromebooks)</label>
+                        <div class="guide-content">
+                            <p>School computers, especially Chromebooks, can sometimes feel sluggish. Here are some great tips to help improve their performance, focusing on ethical and effective methods to make your browsing and work smoother.</p>
+                            <ol>
+                                <li><b>Manage Browser Tabs:</b>
+                                    <ul>
+                                        <li><b>Close Unused Tabs:</b> Each open tab consumes RAM and CPU. Close tabs you're not actively using.</li>
+                                        <li><b>Tab Suspenders:</b> Consider browser extensions (if allowed) that automatically suspend inactive tabs to free up resources.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Clear Browser Cache & Data:</b>
+                                    <ul>
+                                        <li><b>Regular Cleaning:</b> Over time, cached images, files, and cookies can accumulate and slow down your browser. Regularly clear your browsing data (cache, cookies, browsing history).</li>
+                                        <li><b>How to (Chromebook):</b> Open Chrome, go to `Settings` > `Privacy and security` > `Clear browsing data`. Select "Cached images and files" and "Cookies and other site data" and choose a time range.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Disable Unnecessary Extensions:</b>
+                                    <ul>
+                                        <li><b>Review Extensions:</b> Many extensions run in the background and consume resources. Go through your installed extensions and disable or remove any you don't frequently use.</li>
+                                        <li><b>How to (Chromebook):</b> Open Chrome, type `chrome://extensions` in the address bar, and press Enter. Toggle off or remove extensions.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Keep ChromeOS & Browser Updated:</b>
+                                    <ul>
+                                        <li><b>Automatic Updates:</b> Chromebooks typically update automatically, but ensure your system and Chrome browser are always running the latest versions. Updates often include performance improvements and bug fixes.</li>
+                                        <li><b>Check for Updates (Chromebook):</b> Go to `Settings` > `About ChromeOS` > `Check for updates`.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Minimize Background Apps:</b>
+                                    <ul>
+                                        <li><b>Close Android Apps (Chromebooks):</b> If your Chromebook supports Android apps, ensure you close any apps running in the background when not in use, as they can consume significant resources.</li>
+                                        <li><b>Task Manager:</b> Use Chrome's built-in Task Manager (`Shift + Esc`) to identify and close resource-heavy tabs or extensions.</li>
+                                    </ul>
+                                </li>
+                                <li><b>Use Lightweight Websites/Apps:</b>
+                                    <ul>
+                                        <li><b>Mobile Versions:</b> If available, sometimes mobile versions of websites are less resource-intensive.</li>
+                                        <li><b>Progressive Web Apps (PWAs):</b> Install PWAs for frequently used services if they offer them, as they can sometimes run more efficiently than full website tabs.</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p>By implementing these tips, you should notice a significant improvement in the responsiveness and overall speed of your school Chromebook.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="scripts/legal.js"></script> <!-- Keep this for the ToS modal -->
+
+    </body>
+</html>
