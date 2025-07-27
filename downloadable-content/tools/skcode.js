@@ -439,7 +439,7 @@
         }
 
         /* Fullscreen Mode */
-        #sk-code-container.fullscreen { /* Changed ID */
+        #sk-code-container.fullscreen {
             width: 100vw !important;
             height: 100vh !important;
             top: 0 !important;
@@ -450,17 +450,22 @@
         }
 
         /* Minimized state for animation */
-        #sk-code-container.minimized { /* Changed ID */
+        #sk-code-container.minimized {
             opacity: 0;
             transform: scale(0.05) translate(50vw, 50vh);
             pointer-events: none;
         }
 
         /* Fully hidden state (display: none) */
-        #sk-code-container.fully-hidden { /* Changed ID */
+        #sk-code-container.fully-hidden {
             display: none;
             opacity: 0;
             pointer-events: none;
+        }
+
+        /* Class to prevent scrolling when the IDE is active and should control page overflow */
+        html.sk-code-active-overflow-control, body.sk-code-active-overflow-control {
+            overflow: hidden !important;
         }
 
         /* Modal for prompts/alerts */
@@ -524,7 +529,7 @@
 
     // --- Main Container and Structure ---
     const ideContainer = document.createElement('div');
-    ideContainer.id = 'sk-code-container'; // Changed ID
+    ideContainer.id = 'sk-code-container';
     document.body.appendChild(ideContainer);
 
     // Store initial/previous dimensions for fullscreen toggle
@@ -1404,10 +1409,28 @@ button {
         // Apply 'minimized' class for the animation effect
         ideContainer.classList.add('minimized');
         ideContainer.classList.remove('fullscreen'); // Ensure fullscreen is off
-        ideContainer.classList.remove('fully-hidden'); // Ensure fully-hidden is off
+        // Do NOT remove 'fully-hidden' here. It will be added after transition.
         titleText.textContent = 'SK.Code (Hidden)';
-        document.body.style.overflow = 'hidden'; // Hide body scrollbar when minimized
+        // Add class to hide overflow when IDE is minimized/closing
+        document.documentElement.classList.add('sk-code-active-overflow-control');
+        document.body.classList.add('sk-code-active-overflow-control');
         ideContainer.style.pointerEvents = 'none'; // Disable interactions
+
+        // Add the transitionend listener to fully hide after animation, just like the keybind
+        ideContainer.addEventListener('transitionend', function handler() {
+            // Check if the minimized class is still present, indicating the hide animation completed
+            // and it wasn't interrupted by another action (like showing it again).
+            if (ideContainer.classList.contains('minimized')) {
+                ideContainer.style.display = 'none';
+                ideContainer.classList.remove('minimized');
+                ideContainer.classList.add('fully-hidden'); // Mark as fully hidden
+                titleText.textContent = 'SK.Code (Hidden)';
+                // Remove overflow control when fully hidden, as it no longer affects layout
+                document.documentElement.classList.remove('sk-code-active-overflow-control');
+                document.body.classList.remove('sk-code-active-overflow-control');
+            }
+            ideContainer.removeEventListener('transitionend', handler);
+        }, { once: true });
     }
 
     // Function to show the IDE window from a hidden/minimized state
@@ -1419,36 +1442,46 @@ button {
         ideContainer.classList.remove('fully-hidden'); // Remove fully-hidden class
         ideContainer.style.pointerEvents = 'auto';
         titleText.textContent = 'SK.Code (HTML/CSS/JS)';
-        document.body.style.overflow = ''; // Restore body overflow
+        // Remove class to restore overflow when IDE becomes visible (from fully-hidden)
+        document.documentElement.classList.remove('sk-code-active-overflow-control');
+        document.body.classList.remove('sk-code-active-overflow-control');
     }
 
     // Function to toggle fullscreen mode
     function toggleFullscreen() {
+        // Ensure transitions are temporarily off for immediate style application
+        ideContainer.style.transition = 'none';
+        void ideContainer.offsetWidth; // Force reflow
+
         if (isFullscreen) {
-            // Exit fullscreen: Restore previous dimensions
-            ideContainer.style.transition = 'none'; // Temporarily disable transition for immediate style application
+            // EXITING fullscreen: Restore previous dimensions
             ideContainer.classList.remove('fullscreen');
             ideContainer.style.width = prevIdeWidth;
             ideContainer.style.height = prevIdeHeight;
             ideContainer.style.top = prevIdeTop;
             ideContainer.style.left = prevIdeLeft;
-            document.body.style.overflow = ''; // Restore body overflow
-            void ideContainer.offsetWidth; // Force reflow
-            ideContainer.style.transition = 'all 0.3s ease-out'; // Re-enable transition
+
+            // Remove overflow: hidden from html and body only if IDE is not also minimized or fully hidden
+            if (!ideContainer.classList.contains('minimized') && !ideContainer.classList.contains('fully-hidden')) {
+                document.documentElement.classList.remove('sk-code-active-overflow-control');
+                document.body.classList.remove('sk-code-active-overflow-control');
+            }
         } else {
-            // Enter fullscreen: Store current dimensions and apply fullscreen styles
+            // ENTERING fullscreen: Store current dimensions and apply fullscreen styles
             prevIdeWidth = window.getComputedStyle(ideContainer).width;
             prevIdeHeight = window.getComputedStyle(ideContainer).height;
             prevIdeTop = window.getComputedStyle(ideContainer).top;
             prevIdeLeft = window.getComputedStyle(ideContainer).left;
 
-            ideContainer.style.transition = 'none'; // Temporarily disable transition
             ideContainer.classList.add('fullscreen');
-            document.body.style.overflow = 'hidden'; // Hide body scrollbar
-            void ideContainer.offsetWidth; // Force reflow
-            ideContainer.style.transition = 'all 0.3s ease-out'; // Re-enable transition
+            // When entering fullscreen, always add overflow control
+            document.documentElement.classList.add('sk-code-active-overflow-control');
+            document.body.classList.add('sk-code-active-overflow-control');
         }
         isFullscreen = !isFullscreen;
+
+        // Re-enable transition after styles are applied
+        ideContainer.style.transition = 'all 0.3s ease-out';
     }
 
     // --- Event Listeners for UI Interactions ---
@@ -1624,7 +1657,7 @@ button {
             return;
         }
         const trimmedName = newName.trim();
-        let projects = getProjectList();
+        let projects = getProjectList(); // Re-fetch projects to ensure it's up-to-date
         if (projects.includes(trimmedName)) {
             showModal(`Workspace "${trimmedName}" already exists. Please choose a different name.`, "alert");
             return;
@@ -1661,7 +1694,7 @@ button {
             }
         }
         // Toggle IDE visibility with backslash (\) key
-        if (e.key === '\\' && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+        if (e.key === '\\' && !e.ctrlKey && !e.metaKey && !e.shiftKey) { // Reverted key to backslash
             e.preventDefault();
             e.stopPropagation();
 
@@ -1670,21 +1703,7 @@ button {
                 showIdeWindow();
             } else {
                 // If visible or minimized, fully hide it with animation
-                saveCurrentProject();
-                ideContainer.classList.add('minimized'); // Start minimize animation
-                ideContainer.style.pointerEvents = 'none'; // Disable interactions during transition
-
-                // After transition, set display to none
-                ideContainer.addEventListener('transitionend', function handler() {
-                    if (ideContainer.classList.contains('minimized')) { // Ensure it's the hide transition
-                        ideContainer.style.display = 'none';
-                        ideContainer.classList.remove('minimized'); // Clean up class
-                        ideContainer.classList.add('fully-hidden'); // Mark as fully hidden
-                        titleText.textContent = 'SK.Code (Hidden)';
-                        document.body.style.overflow = ''; // Restore body overflow
-                    }
-                    ideContainer.removeEventListener('transitionend', handler);
-                }, { once: true });
+                hideIdeWindow(); // Call hideIdeWindow for consistency
             }
         }
     }
