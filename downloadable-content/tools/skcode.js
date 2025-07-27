@@ -48,9 +48,9 @@
             position: fixed;
             top: 50px; /* Initial position */
             left: 50px;
-            width: 90vw; /* Responsive width */
-            max-width: 1200px; /* Max width for desktop */
-            height: 80vh; /* Responsive height */
+            width: calc(90vw - 100px); /* Default width: 100px less than 90vw */
+            max-width: 1100px; /* Adjusted max-width */
+            height: 630px; /* Fixed default height */
             max-height: 800px; /* Max height for desktop */
             min-width: 600px;
             min-height: 400px;
@@ -1771,8 +1771,8 @@ button {
                 localStorage.setItem(LAST_ACTIVE_PROJECT_KEY, currentProjectName);
             });
 
-            // Ensure the initial editor is active (handled by loadProject)
-            // runCode(); // Initial run of code is now handled by loadProject
+            // Run code on initial load to populate the preview
+            runCode();
 
             console.log("SK.Code injected. Use the traffic light buttons or '\\' to manage the window.");
         }
