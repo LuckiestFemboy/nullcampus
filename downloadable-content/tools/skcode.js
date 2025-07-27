@@ -55,7 +55,7 @@
             min-width: 600px;
             min-height: 400px;
             background-color: var(--ide-bg);
-            z-index: 99999;
+            z-index: 99999; /* Default high z-index */
             display: flex;
             flex-direction: column;
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1430,6 +1430,7 @@ button {
 
         ideContainer.classList.add('minimized'); // Start minimize animation
         ideContainer.style.pointerEvents = 'none'; // Disable interactions
+        ideContainer.style.zIndex = '-99999999999999'; // Set z-index to be completely out of the way
 
         ideContainer.addEventListener('transitionend', function handler() {
             if (ideContainer.classList.contains('minimized')) { // Ensure it's the hide transition
@@ -1449,6 +1450,7 @@ button {
         ideContainer.classList.remove('minimized');
         ideContainer.classList.remove('fully-hidden');
         ideContainer.style.pointerEvents = 'auto';
+        ideContainer.style.zIndex = '99999'; // Revert z-index to its default high value
         titleText.textContent = 'SK.Code (HTML/CSS/JS)';
         // When showing, ensure overflow control is NOT present unless explicitly entering fullscreen
         document.documentElement.classList.remove('sk-code-active-overflow-control');
@@ -1696,8 +1698,8 @@ button {
         // Prevent Ctrl+1 (Cmd+1 on Mac) from interfering
         if ((e.ctrlKey || e.metaKey) && e.key === '1') {
             if (ideContainer && ideContainer.style.display !== 'none' && !ideContainer.classList.contains('minimized') && !ideContainer.classList.contains('fully-hidden')) {
-                e.preventDefault();
-                e.stopPropagation();
+                e.preventDefault(); // Prevent default browser action
+                e.stopPropagation(); // Stop propagation to other listeners
                 console.log("Prevented Ctrl+1 from interfering with SK.Code.");
             }
         }
@@ -1726,12 +1728,13 @@ button {
         }
     }
 
+    // Add the global keydown and keyup listeners
     document.addEventListener('keydown', handleGlobalKeydown);
-    document.addEventListener('keyup', handleGlobalKeyup); // Add keyup listener
+    document.addEventListener('keyup', handleGlobalKeyup);
 
     // --- Initial Setup ---
     let scriptsLoaded = 0;
-    const totalScripts = 2;
+    const totalScripts = 2; // Number of external scripts to load (JSZip, FontAwesome)
 
     const checkScriptsLoaded = () => {
         scriptsLoaded++;
@@ -1751,28 +1754,31 @@ button {
             document.body.classList.remove('sk-code-active-overflow-control');
 
 
-            updateFileTree();
+            updateFileTree(); // Populate the sidebar with existing projects
 
+            // Load the last active project or the default one
             const lastActiveProject = localStorage.getItem(LAST_ACTIVE_PROJECT_KEY) || 'default-project';
-
             if (getProjectList().includes(lastActiveProject)) {
                 loadProject(lastActiveProject);
             } else {
                 loadProject('default-project');
             }
 
+            // Save current project name and active editor tab on window unload
+            // This ensures the IDE reopens to the same state next time.
             window.addEventListener('beforeunload', () => {
                 saveCurrentProject();
                 localStorage.setItem(LAST_ACTIVE_PROJECT_KEY, currentProjectName);
             });
 
-            // Removed initial runCode() call to prevent auto-opening
-            // runCode();
+            // Ensure the initial editor is active (handled by loadProject)
+            // runCode(); // Initial run of code is now handled by loadProject
 
             console.log("SK.Code injected. Use the traffic light buttons or '\\' to manage the window.");
         }
     };
 
+    // Set onload handlers for external scripts
     jszipScript.onload = checkScriptsLoaded;
     fontAwesomeScript.onload = checkScriptsLoaded;
 
