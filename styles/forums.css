@@ -1,5 +1,58 @@
 @empty: ~"";
 
+@font-face {
+  font-family: 'SF Pro';
+  src: url('https://luckiestfemboy.github.io/nullcampus/fonts/SF-Pro.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+    font-family: "SF-Pro", sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: #c27725 #222;
+    box-sizing: border-box;
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
+}
+
+/* Custom Scrollbar Styles */
+*::-webkit-scrollbar {
+    width: 5px;
+}
+*::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #c27725;
+}
+*::-webkit-scrollbar-track {
+    background-color: #202020;
+}
+
+
+
+
+/* --- Main.css Inspired Variables --- */
+@kz-orange: #fb9d4c;
+@blue-accent: #007bff; /* Used for specific buttons in main.css */
+@body-bg-color: #121212;
+@website-bg-color: #151515;
+@section-bg-color: #202020;
+@card-header-bg-color: #2a2a2a;
+@darker-section-bg-color: #1a1a1a; /* For alternating rows or slightly darker sections */
+
+@text-color-light: #fff;
+@text-color-medium: #ccc;
+@text-color-dark: #888;
+
+@border-color-dark: #333; /* Used for various borders */
+
+/* General border-radius values from main.css */
+@border-radius-large: 8px;
+@border-radius-medium: 6px;
+@border-radius-small: 4px; /* For smaller elements like meta spans */
+@border-radius-tiny: 2px; /* For scrollbar thumb */
+
+/* --- Original Forums.css Mixins (unchanged) --- */
 .rounded-corners(@a, @b, @c, @d) {
 	border-radius: @arguments;
 	-moz-border-radius: @arguments;
@@ -18,13 +71,13 @@
 	-webkit-border-radius: @arguments;
 }
 
-.rounded-corners(@a: 5px) {
+.rounded-corners(@a: @border-radius-large) { /* Default to large radius (8px) */
 	border-radius: @arguments;
 	-moz-border-radius: @arguments;
 	-webkit-border-radius: @arguments;
 }
 
-.box-shadow(@h-shadow: 2px, @v-shadow: 2px, @blur: 2px, @box-shadow-color: #333333) {
+.box-shadow(@h-shadow: 0, @v-shadow: 2px, @blur: 10px, @box-shadow-color: rgba(0, 0, 0, 0.2)) { /* Adjusted default shadow */
 	box-shadow: @arguments;
 	-moz-box-shadow: @arguments;
 	-webkit-box-shadow: @arguments;
@@ -49,92 +102,101 @@
 // Reference: http://www.smashingmagazine.com/2013/08/09/absolute-horizontal-vertical-centering-css/
 .absolute-center() { position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; }
 
-/* Required for proper functioning of the Colors & Theme Creator */
-@banner_height: 100px;
-@banner_background_color: #006CB7;
-@banner_background_image: url('@{images_path}/banners/image-default.png');
+/* --- Required for proper functioning of the Colors & Theme Creator (Updated) --- */
+@banner_height: 0px; /* Hidden */
+@banner_background_color: transparent;
+@banner_background_image: none;
 @banner_background_position: left center;
-@banner_text_color: #FFFFFF;
+@banner_text_color: transparent;
 @banner_text_align: left;
 @wrapper_width: 90%;
-@all_gradients: url('@{images_path}/gradients/wave.png');
+@all_gradients: none; /* Remove gradients to match main.css's flat design */
 @body_background_image: none;
 
-@body_background_color: #FFFFFF;
-@default_forum_text_color: #000000;
-@link_color: #004FA0;
-@link_visited_color: #004FA0;
+@body_background_color: @body-bg-color;
+@default_forum_text_color: @text-color-medium;
+@link_color: @kz-orange;
+@link_visited_color: @kz-orange;
 
-@title_bar_background_color: #006CB7;
-@title_text_color: #FFFFFF;
-@title_buttons_background_color: #004C97;
-@title_buttons_color: #FFFFFF;
+@title_bar_background_color: @section-bg-color;
+@title_text_color: @text-color-light;
+@title_buttons_background_color: @kz-orange;
+@title_buttons_color: @text-color-light;
 
-@buttons_background_color: #DADADA;
-@buttons_text_color: #000000;
+@buttons_background_color: @kz-orange;
+@buttons_text_color: @text-color-light;
 
-@container_background_color_1: #FFFFFF;
-@container_text_color_1: #000000;
-@container_background_color_2: #F6F6F6;
-@container_text_color_2: #000000;
-@container_links_color: #004FA0;
-@container_highlight_color: #F6F6F6;
-@container_outer_border_color: #000000;
-@container_inner_border_color: #E6E6E6;
+@container_background_color_1: @section-bg-color;
+@container_text_color_1: @text-color-medium;
+@container_background_color_2: @darker-section-bg-color;
+@container_text_color_2: @text-color-medium;
+@container_links_color: @kz-orange;
+@container_highlight_color: @card-header-bg-color; /* Used for hover/selected states */
+@container_outer_border_color: @border-color-dark;
+@container_inner_border_color: @border-color-dark;
 
-@pagination_background_color: #FFFFFF;
-@pagination_text_color: #000000;
-@pagination_hover_color: #EFEFEF;
+@pagination_background_color: @section-bg-color;
+@pagination_text_color: @text-color-medium;
+@pagination_hover_color: @card-header-bg-color;
 /* End required for proper functioning of the Colors & Theme Creator */
 
 
 /**************************************************************************
- *                             Global Styles                              *
+ * Global Styles                              *
  **************************************************************************/
 
 /* Common Elements and Classes */
 @body_background_attachment: @empty;
 @body_background_repeat: @empty;
 @body_background_position: @empty;
-@default_forum_text_font_style: @empty;
-@default_forum_text_font_weight: @empty;
-@default_forum_text_font_size: 10pt;
-@default_forum_text_font_family: Verdana,Arial;
+@default_forum_text_font_style: normal;
+@default_forum_text_font_weight: normal;
+@default_forum_text_font_size: 15px; /* Aligned with main.css general text size */
+@default_forum_text_font_family: Verdana,Arial; /* KEPT ORIGINAL FONT */
 @default_forum_text_decoration: none;
 @default_forum_text_case: none;
 @default_forum_text_caps: normal;
-@bold_weight: 700;
+@bold_weight: 600; /* Adjusted to match main.css */
 @bold_size: @empty;
 @italic_style: italic;
 @link_font: 100% @default_forum_text_font_family;
 @link_decoration: none;
-@link_active_color: @link_color;
+@link_active_color: @kz-orange;
 @link_active_decoration: @link_decoration;
 @link_visited_decoration: @link_decoration;
-@link_hover_color: @link_color;
-@link_hover_decoration: @link_decoration;
-@h2_color: @empty;
+@link_hover_color: @kz-orange;
+@link_hover_decoration: underline; /* Added underline on hover for links */
+@h2_color: @text-color-light;
 @h2_font: 100% @default_forum_text_font_family;
 @h2_decoration: @empty;
 @h2_case: @empty;
 @h2_caps: @empty;
-@h3_color: @empty;
+@h3_color: @kz-orange; /* Changed to orange accent */
 @h3_font: 140% @default_forum_text_font_family;
 @h3_decoration: @empty;
 @h3_case: @empty;
 @h3_caps: @empty;
-@timestamp_color: lighten(@container_text_color_1, 15%);
+@timestamp_color: @text-color-dark; /* Darker for timestamps */
 @timestamp_font: italic 85% @default_forum_text_font_family;
-@description_color: @empty;
+@description_color: @text-color-medium;
 @description_font: italic 85% @default_forum_text_font_family;
-@viewing_color: @empty;
+@viewing_color: @text-color-medium;
 @viewing_font: 75% @default_forum_text_font_family;
 @small_desc_color: lighten(@default_forum_text_color, 15%);
 @small_desc_font: 70% @default_forum_text_font_family;
-@shadow_color: #333333;
+@shadow_color: rgba(0, 0, 0, 0.3); /* Adjusted shadow color */
 * { word-wrap: break-word; }
-body { background-color: @body_background_color; background-image: @body_background_image; background-attachment: @body_background_attachment; background-repeat: @body_background_repeat; background-position: @body_background_position; line-height: 1.2; color: @default_forum_text_color; font-style: @default_forum_text_font_style; font-weight: @default_forum_text_font_weight; font-size: @default_forum_text_font_size; font-family: @default_forum_text_font_family; text-decoration: @default_forum_text_decoration; text-transform: @default_forum_text_case; font-variant: @default_forum_text_caps; }
-#wrapper { width: @wrapper_width; margin: 0 auto; overflow-x: hidden; }
+body { background-color: @body_background_color; background-image: @body_background_image; background-attachment: @body_background_attachment; background-repeat: @body_background_repeat; background-position: @body_background_position; line-height: 1.6; /* Increased line height for readability */ color: @default_forum_text_color; font-style: @default_forum_text_font_style; font-weight: @default_forum_text_font_weight; font-size: @default_forum_text_font_size; font-family: @default_forum_text_font_family; text-decoration: @default_forum_text_decoration; text-transform: @default_forum_text_case; font-variant: @default_forum_text_caps; }
+#wrapper {
+    width: @wrapper_width;
+    margin: 0 auto;
+    overflow-x: hidden;
+    border-radius: @border-radius-large; /* Added border-radius to wrapper */
+    background-color: @website-bg-color; /* Added background for wrapper */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Added shadow to wrapper */
+    padding: 20px; /* Added padding to match main.css container */
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
 table { table-layout: fixed; }
 a { cursor: pointer; color: @link_color; font: @link_font; text-decoration: @link_decoration; }
 :visited { color: @link_visited_color; text-decoration: @link_visited_decoration; }
@@ -153,10 +215,10 @@ sub, sup { font-size: 80%; }
 .viewing { color: @viewing_color; font: @viewing_font; }
 .small { font: @small_desc_font; vertical-align: middle; }
 .note { color: @small_desc_color; }
-.placeholder, .placeholder-empty { color: #888888; }
+.placeholder, .placeholder-empty { color: @text-color-dark; }
 .foot abbr.time, .small abbr.time { font-size: 100%; }
 .pointer { cursor: pointer; }
-.border-round { border-width: 1px; border-style: solid; border-color: @container_inner_border_color; .rounded-corners(); }
+.border-round { border-width: 1px; border-style: solid; border-color: @container_inner_border_color; .rounded-corners(@border-radius-medium); } /* Adjusted border-radius */
 .clear { clear: both; }
 .float-right { float: right; }
 .float-left { float: left; }
@@ -177,7 +239,7 @@ sub, sup { font-size: 80%; }
 .posting-options-list.options_menu { max-width: 100%; }
 .options_menu li { height: 28px; }
 .options_menu a { height: 20px; line-height: 20px !important; }
-.options_menu hr { color: #AAAAAA; background-color: #AAAAAA; height: 1px; border: none; }
+.options_menu hr { color: @border-color-dark; background-color: @border-color-dark; height: 1px; border: none; }
 .controls .checkbox { display: none; }
 .clickable { cursor: pointer; }
 
@@ -213,92 +275,131 @@ sub, sup { font-size: 80%; }
 .pad-all-sides-thick { padding: 5px 20px !important; }
 
 /* Status Text */
-@status_text_success_color: @container_text_color_1;
-@status_text_failure_color: @container_text_color_1;
+@status_text_success_color: @text-color-medium;
+@status_text_failure_color: @kz-orange; /* Changed to orange for error */
 .saved { color: @status_text_success_color; }
-.status-box { font-weight: 800; margin-left: 5px; .rounded-corners(); padding: 1px 5px; }
-.status-box.error { background-color: @container_background_color_1; }
-.status-box.saved { background-color: @container_background_color_1; }
+.status-box { font-weight: 800; margin-left: 5px; .rounded-corners(@border-radius-small); padding: 1px 5px; } /* Adjusted border-radius */
+.status-box.error { background-color: @card-header-bg-color; } /* Changed background */
+.status-box.saved { background-color: @card-header-bg-color; } /* Changed background */
 .error { color: @status_text_failure_color; }
 .flood-control { padding: 5px; color: @status_text_failure_color; }
 .posting-errors { padding: 5px; color: @status_text_failure_color; }
-.noscript-form-error { color: @status_text_failure_color; background: @container_background_color_1; font-weight: 800; .rounded-corners(); padding: 5px; margin: 0 0 10px 0; }
-.ui-form-error { display: none; position: absolute; z-index: 9000; color: @container_text_color_1; border: 2px solid @status_text_failure_color; padding: 4px; font-size: 80%; background-color: @container_background_color_1; }
-input.ui-error { background-color: @container_background_color_1; color: @status_text_failure_color; padding: 2px; }
+.noscript-form-error { background: @card-header-bg-color; color: @status_text_failure_color; font-weight: 800; .rounded-corners(@border-radius-medium); padding: 5px; margin: 0 0 10px 0; } /* Adjusted colors and radius */
+.ui-form-error { display: none; position: absolute; z-index: 9000; color: @text-color-medium; border: 2px solid @kz-orange; padding: 4px; font-size: 80%; background-color: @section-bg-color; } /* Adjusted colors */
+input.ui-error { background-color: @darker-section-bg-color; color: @kz-orange; padding: 2px; } /* Adjusted colors */
 .shoutbox_error { color: @status_text_failure_color; }
 
 
-/* Header */
-@banner_background_repeat: repeat;
-@banner_text_font: normal normal bold 30px "Trebuchet MS", Verdana, Arial;
-@banner_text_decoration: none;
-@banner_text_case: none;
-@banner_text_caps: normal;
-@banner_text_shadow: 2px 2px 2px @shadow_color;
-header { display: block; position: relative; margin-bottom: 10px; }
-#banner-container { display: table; width: 100%; }
-#banner { display: table-cell; height: @banner_height; background-color: @banner_background_color; background-image: @banner_background_image; background-position: @banner_background_position; background-repeat: @banner_background_repeat; vertical-align: middle; padding: 0px 20px; text-align: @banner_text_align; overflow: hidden; }
-a#logo { vertical-align: middle; color: @banner_text_color; text-shadow: @banner_text_shadow; text-decoration: @banner_text_decoration; font: @banner_text_font; font-variant: @banner_text_caps; text-transform: @banner_text_case; white-space: normal; word-break: break-all; }
-a#logo:hover { color: @banner_text_color !important; text-decoration: @banner_text_decoration !important; }
+#banner {
+    display: none !important; /* Ensure banner is hidden */
+}
 
 /* Welcome Text / Login / Logout Links */
-@welcome_text_color: @title_text_color;
-@welcome_text_font: 1em "Trebuchet MS", Verdana, Arial;
+@welcome_text_color: @text-color-light;
+@welcome_text_font: 1em @default_forum_text_font_family;
 @welcome_text_shadow: none;
-@welcome_links_color: @welcome_text_color;
+@welcome_links_color: @kz-orange;
 @welcome_links_font: @welcome_text_font;
-@welcome_links_decoration: underline;
+@welcome_links_decoration: none;
 @welcome_links_shadow: @welcome_text_shadow;
 #welcome { text-align: right; color: @welcome_text_color; font: @welcome_text_font; text-shadow: @welcome_text_shadow; float: right; vertical-align: middle; line-height: 31px !important; }
 #welcome a { color: @welcome_links_color; text-decoration: @welcome_links_decoration; text-shadow: @welcome_links_shadow; font: @welcome_links_font; }
 
 /* Navigation Menu */
-@nav_bar_background: @title_bar_background_color @all_gradients left center repeat-x;
+@nav_bar_background: @section-bg-color; /* Solid color */
 @nav_bar_border: 0px solid @container_outer_border_color;
-@nav_bar_border_radius: 0 0 5px 5px;
-@nav_bar_button_color: @title_text_color;
-@nav_bar_button_font: 1em "Trebuchet MS", Verdana, Arial;
+@nav_bar_border_radius: @border-radius-large; /* Adjusted to 8px */
+@nav_bar_button_color: @text-color-medium;
+@nav_bar_button_font: 1em @default_forum_text_font_family;
 @nav_bar_button_decoration: none;
 @nav_bar_button_shadow: none;
-@nav_bar_button_background: @empty;
-@nav_bar_button_hover_color: @nav_bar_button_color;
+@nav_bar_button_background: transparent;
+@nav_bar_button_hover_color: @kz-orange;
 @nav_bar_button_hover_font: @nav_bar_button_font;
-@nav_bar_button_hover_decoration: @nav_bar_button_decoration;
+@nav_bar_button_hover_decoration: none;
 @nav_bar_button_hover_shadow: @nav_bar_button_shadow;
-@nav_bar_button_hover_background: @nav_bar_button_background;
-@nav_bar_button_current_color: @title_buttons_color;
+@nav_bar_button_hover_background: @card-header-bg-color; /* Hover background */
+@nav_bar_button_current_color: @kz-orange;
 @nav_bar_button_current_font: @nav_bar_button_font;
-@nav_bar_button_current_decoration: @nav_bar_button_decoration;
+@nav_bar_button_current_decoration: none;
 @nav_bar_button_current_shadow: @nav_bar_button_shadow;
-@nav_bar_button_current_background: @title_buttons_background_color @all_gradients center repeat-x;
-@nav_bar_bubble_text_color: #000000;
-@nav_bar_bubble_font: .8em "Trebuchet MS", Verdana, Arial;
-@nav_bar_bubble_background: #FFFFFF;
-@nav_bar_bubble_border_radius: 5px;
-#navigation-menu { padding: 0 8px; background: @nav_bar_background; border: @nav_bar_border; .rounded-corners(@nav_bar_border_radius); }
+@nav_bar_button_current_background: transparent; /* Active link has underline in main.css */
+@nav_bar_bubble_text_color: @text-color-light;
+@nav_bar_bubble_font: .8em @default_forum_text_font_family;
+@nav_bar_bubble_background: @kz-orange; /* Orange bubble */
+@nav_bar_bubble_border_radius: @border-radius-small; /* Adjusted to 4px */
+#navigation-menu {
+    padding: 0 20px; /* Adjusted padding to match main.css nav */
+    background: @nav_bar_background;
+    border: @nav_bar_border;
+    .rounded-corners(@nav_bar_border_radius);
+    height: 70px; /* Adjusted height */
+    margin: 0 auto 30px auto; /* Adjusted margin */
+    display: flex; /* Flexbox for alignment */
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Added shadow */
+}
 #navigation-menu a { position: relative; }
 #navigation-menu > ul, #navigation-menu > ul li { float: left; }
-#navigation-menu > ul li a { display: inline-block; padding: 0 .75em; color: @nav_bar_button_color; font: @nav_bar_button_font; text-decoration: @nav_bar_button_decoration; text-shadow: @nav_bar_button_shadow; background: @nav_bar_button_background; line-height: 31px !important; }
-#navigation-menu > ul li:hover a { color: @nav_bar_button_hover_color !important; font: @nav_bar_button_hover_font; text-decoration: @nav_bar_button_hover_decoration !important; text-shadow: @nav_bar_button_hover_shadow; background: @nav_bar_button_hover_background; line-height: 31px !important; }
-#navigation-menu > ul li a.state-active { color: @nav_bar_button_current_color !important; font: @nav_bar_button_current_font; text-decoration: @nav_bar_button_current_decoration !important; text-shadow: @nav_bar_button_current_shadow; background: @nav_bar_button_current_background; line-height: 31px !important; }
+#navigation-menu > ul li a {
+    display: inline-block;
+    padding: 5px 0; /* Adjusted padding */
+    margin-right: 25px; /* Adjusted spacing */
+    color: @nav_bar_button_color;
+    font: @nav_bar_button_font;
+    text-decoration: @nav_bar_button_decoration;
+    text-shadow: @nav_bar_button_shadow;
+    background: @nav_bar_button_background;
+    line-height: normal !important; /* Adjusted line height */
+    transition: color 0.2s ease; /* Smooth transition */
+}
+#navigation-menu > ul li:hover a {
+    color: @nav_bar_button_hover_color !important;
+    font: @nav_bar_button_hover_font;
+    text-decoration: @nav_bar_button_hover_decoration !important;
+    text-shadow: @nav_bar_button_hover_shadow;
+    background: @nav_bar_button_hover_background; /* Apply hover background */
+    line-height: normal !important;
+}
+#navigation-menu > ul li a.state-active {
+    color: @nav_bar_button_current_color !important;
+    font: @nav_bar_button_current_font;
+    text-decoration: @nav_bar_button_current_decoration !important;
+    text-shadow: @nav_bar_button_current_shadow;
+    background: @nav_bar_button_current_background;
+    line-height: normal !important;
+    /* Add active underline effect from main.css */
+    position: relative;
+}
+#navigation-menu > ul li a.state-active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: @kz-orange;
+    border-radius: 2px;
+}
 #navigation-menu div.tip-holder { position: absolute; top: -8px; right: 3px; display: inline-block; }
 #navigation-menu div.tip-holder div.tip-number { padding: 3px 7px 2px 7px; background-color: @nav_bar_bubble_background; .rounded-corners(@nav_bar_bubble_border_radius); font: @nav_bar_bubble_font; line-height: .8em; text-shadow: none; .box-shadow(2px, 2px, 2px, @shadow_color); height: .8em; color: @nav_bar_bubble_text_color; }
 #navigation-menu div.tip-holder span.tip { border-top: 4px solid @nav_bar_bubble_background; border-left: 4px solid transparent; border-right: 4px solid transparent; position: absolute; left: 6px; }
 
 /* Navigation Tree + Participated Button + News Bar */
-@nav_tree_color: @container_text_color_1;
+@nav_tree_color: @text-color-medium;
 @nav_tree_font: .8em @default_forum_text_font_family;
 @nav_tree_decoration: none;
-@nav_tree_background_color: @container_background_color_1;
+@nav_tree_background_color: @section-bg-color;
 @nav_tree_border_width: 1px;
 @nav_tree_border_style: solid;
-@nav_tree_border_color: @container_outer_border_color;
-@nav_tree_border_radius: 5px;
-@nav_tree_hover_color: @container_text_color_1;
+@nav_tree_border_color: @border-color-dark;
+@nav_tree_border_radius: @border-radius-large; /* Adjusted to 8px */
+@nav_tree_hover_color: @kz-orange;
 @nav_tree_hover_font: @nav_tree_font;
 @nav_tree_hover_decoration: none;
-@nav_tree_hover_background_color: @container_highlight_color;
-.recent-threads-button, #navigation-tree { color: @nav_tree_color; border-width: @nav_tree_border_width; border-style: @nav_tree_border_style; border-color: @nav_tree_border_color; background: @nav_tree_background_color; margin-bottom: 10px; height: 20px; .rounded-corners(@nav_tree_border_radius); }
+@nav_tree_hover_background_color: @card-header-bg-color;
+.recent-threads-button, #navigation-tree { color: @nav_tree_color; border-width: @nav_tree_border_width; border-style: @nav_tree_border_style; border-color: @nav_tree_border_color; background: @nav_tree_background_color; margin-bottom: 10px; height: 20px; .rounded-corners(@nav_tree_border_radius); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Added shadow */ }
 .recent-threads-button.new .new-icon { display: inline-block; }
 #navigation-tree { overflow: hidden; }
 #nav-tree { white-space: nowrap; }
@@ -347,7 +448,7 @@ a#logo:hover { color: @banner_text_color !important; text-decoration: @banner_te
 .recent-threads-button:hover { color: @nav_tree_hover_color; font: @nav_tree_hover_font; text-decoration: @nav_tree_hover_decoration; background-color: @nav_tree_hover_background_color; }
 .recent-threads-button .new-icon { margin: 0px 5px 0px 0px; }
 /* News Bar */
-#news { color: @nav_tree_color; font: @nav_tree_font; text-decoration: @nav_tree_decoration; z-index: 9; height: 20px; background-color: @nav_tree_background_color; overflow: hidden; margin: 0 auto 10px; border: @nav_tree_border_width @nav_tree_border_style @nav_tree_border_color; .rounded-corners(@nav_tree_border_radius); }
+#news { color: @nav_tree_color; font: @nav_tree_font; text-decoration: @nav_tree_decoration; z-index: 9; height: 20px; background-color: @nav_tree_background_color; overflow: hidden; margin: 0 auto 10px; border: @nav_tree_border_width @nav_tree_border_style @nav_tree_border_color; .rounded-corners(@nav_tree_border_radius); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Added shadow */ }
 #news .items { height: 20px; position: relative; overflow: hidden; }
 #news .items > div > div { padding: 0 10px; line-height: 20px !important; }
 #news .items div img { vertical-align: text-bottom; }
@@ -362,21 +463,21 @@ a#logo:hover { color: @banner_text_color !important; text-decoration: @banner_te
 #news .nav:hover .arrow { background-color: @nav_tree_hover_background_color; }
 
 /* Participated Dialog */
-@participated_background: @container_background_color_1;
-@participated_inner_border: 1px solid @container_inner_border_color;
-@participated_text_color: @container_text_color_1;
+@participated_background: @section-bg-color;
+@participated_inner_border: 1px solid @border-color-dark;
+@participated_text_color: @text-color-medium;
 @participated_text_font: @empty;
-@participated_links_color: @empty;
+@participated_links_color: @kz-orange;
 @participated_links_font: @empty;
-@participated_links_decoration: @empty;
+@participated_links_decoration: none;
 @participated_subject_align: left;
 @participated_last_post_align: right;
-@participated_hover_background: @container_highlight_color;
-@participated_hover_text_color: @empty;
+@participated_hover_background: @card-header-bg-color;
+@participated_hover_text_color: @text-color-light;
 @participated_hover_text_font: @empty;
-@participated_hover_links_color: @empty;
+@participated_hover_links_color: @kz-orange;
 @participated_hover_links_font: @empty;
-@participated_hover_links_decoration: @empty;
+@participated_hover_links_decoration: underline;
 #recent-threads { background: @participated_background; color: @participated_text_color; font: @participated_text_font; }
 #recent-threads a { color: @participated_links_color; font: @participated_links_font; text-decoration: @participated_links_decoration; }
 #recent-threads th { border-bottom: 1px solid; }
@@ -392,10 +493,10 @@ a#logo:hover { color: @banner_text_color !important; text-decoration: @banner_te
 /* CSS Arrows */
 .arrow { position: relative; display: inline-block; width: 10px; height: 10px; z-index: 10; }
 .arrow > span { content: ''; position: absolute; left: 50%; top: 50%; display: block; border-color: transparent; border-style: solid; border-width: 4px; height: 0; width: 0; }
-.arrow.up > span { margin-left: -4px; margin-top: -6px; border-bottom-color: @container_text_color_1; }
-.arrow.right > span { margin-left: -2px; margin-top: -4px; border-left-color: @container_text_color_1; }
-.arrow.down > span { margin-left: -4px; margin-top: -2px; border-top-color: @container_text_color_1; }
-.arrow.left > span { margin-left: -7px; margin-top: -4px; border-right-color: @container_text_color_1; }
+.arrow.up > span { margin-left: -4px; margin-top: -6px; border-bottom-color: @text-color-medium; } /* Adjusted color */
+.arrow.right > span { margin-left: -2px; margin-top: -4px; border-left-color: @text-color-medium; } /* Adjusted color */
+.arrow.down > span { margin-left: -4px; margin-top: -2px; border-top-color: @text-color-medium; } /* Adjusted color */
+.arrow.left > span { margin-left: -7px; margin-top: -4px; border-right-color: @text-color-medium; } /* Adjusted color */
 .arrow.big > span { border-width: 5px; }
 .arrow.big.up > span { margin-left: -5px; margin-top: -7px; }
 .arrow.big.right > span { margin-top: -5px; }
@@ -403,52 +504,52 @@ a#logo:hover { color: @banner_text_color !important; text-decoration: @banner_te
 .arrow.big.left > span { margin-left: -8px; margin-top: -5px; }
 
 /* Containers and Dialogs */
-@title_bar_background_image: @all_gradients;
+@title_bar_background_image: none; /* Removed gradient */
 @title_bar_background_attachment: @empty;
-@title_bar_background_repeat: repeat-x;
-@title_bar_background_position: left center;
+@title_bar_background_repeat: no-repeat;
+@title_bar_background_position: center center;
 @title_bar_border: @empty;
-@title_bar_border_radius: 5px 5px 0 0;
+@title_bar_border_radius: @border-radius-large @border-radius-large 0 0; /* Adjusted to 8px */
 @title_text_font: bold 100% @default_forum_text_font_family;
 @title_text_decoration: @empty;
 @title_text_transform: @empty;
 @title_text_variant: @empty;
 @title_text_align: @empty;
 @title_text_shadow: @empty;
-@title_buttons_background_image: @all_gradients;
+@title_buttons_background_image: none; /* Removed gradient */
 @title_buttons_background_attachment: scroll;
-@title_buttons_background_repeat: repeat-x;
-@title_buttons_background_position: left center;
+@title_buttons_background_repeat: no-repeat;
+@title_buttons_background_position: center center;
 @title_buttons_font: 100% @default_forum_text_font_family;
-@title_buttons_decoration: @empty;
-@title_buttons_hover_background: @empty;
-@title_buttons_hover_color: @title_buttons_color;
+@title_buttons_decoration: none;
+@title_buttons_hover_background: @card-header-bg-color; /* Hover background */
+@title_buttons_hover_color: @kz-orange; /* Hover color */
 @title_buttons_hover_font: @title_buttons_font;
 @title_buttons_hover_decoration: @title_buttons_decoration;
-@content_background: @container_background_color_1;
+@content_background: @section-bg-color;
 @content_border_width: 1px;
 @content_border_style: solid;
-@content_border_radius: 0 0 5px 5px;
-@content_area_background: @container_background_color_1;
-@content_area_border: 1px solid @container_inner_border_color;
-@content_area_border_radius: 10px;
-@content_area_text_color: @container_text_color_1;
+@content_border_radius: 0 0 @border-radius-large @border-radius-large; /* Adjusted to 8px */
+@content_area_background: @darker-section-bg-color; /* Darker for content boxes */
+@content_area_border: 1px solid @border-color-dark;
+@content_area_border_radius: @border-radius-large; /* Adjusted to 8px */
+@content_area_text_color: @text-color-medium;
 @content_area_text_font: @empty;
 @content_area_links_font: @content_area_text_font;
-@content_area_links_decoration: @empty;
-@action_bar_background: @container_inner_border_color;
-@action_bar_border: 1px solid @container_outer_border_color;
-@action_bar_border_radius: @empty;
-.container > .title-bar { background-color: @title_bar_background_color; background-image: @title_bar_background_image; background-attachment: @title_bar_background_attachment; background-repeat: @title_bar_background_repeat; background-position: @title_bar_background_position; border: @title_bar_border; .rounded-corners(@title_bar_border_radius); }
+@content_area_links_decoration: none;
+@action_bar_background: @card-header-bg-color; /* Darker for action bars */
+@action_bar_border: 1px solid @border-color-dark;
+@action_bar_border_radius: @border-radius-large; /* Adjusted to 8px */
+.container > .title-bar { background-color: @title_bar_background_color; background-image: @title_bar_background_image; background-attachment: @title_bar_background_attachment; background-repeat: @title_bar_background_repeat; background-position: @title_bar_background_position; border: @title_bar_border; .rounded-corners(@title_bar_border_radius); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Added shadow */ }
 .ui-dialog .ui-dialog-titlebar { padding: .3em 1em; position: relative; background-color: @title_bar_background_color; background-image: @title_bar_background_image; background-attachment: @title_bar_background_attachment; background-repeat: @title_bar_background_repeat; background-position: @title_bar_background_position; border: @title_bar_border; .rounded-corners(@title_bar_border_radius); }
 .ui-dialog .ui-dialog-title { color: @title_text_color; font: @title_text_font; text-decoration: @title_text_decoration; font-variant: @title_text_variant; text-transform: @title_text_transform; text-align: @title_text_align; text-shadow: @title_text_shadow; float: left; margin: .1em 16px .2em 0; }
 .container > .title-bar h1, .container > .title-bar h2, .container > .title-bar h3 { color: @title_text_color; font: @title_text_font; text-decoration: @title_text_decoration; font-variant: @title_text_variant; text-transform: @title_text_transform; text-align: @title_text_align; text-shadow: @title_text_shadow; }
-.container > .title-bar > .controls li a, .container > .title-bar > .controls li div { color: @title_buttons_color; background-color: @title_buttons_background_color; background-image: @title_buttons_background_image; background-attachment: @title_buttons_background_attachment; background-repeat: @title_buttons_background_repeat; background-position: @title_buttons_background_position; font: @title_buttons_font; text-decoration: @title_buttons_decoration; height: 30px; line-height: 30px !important; padding: 0 10px; }
+.container > .title-bar > .controls li a, .container > .title-bar > .controls li div { color: @title_buttons_color; background-color: @title_buttons_background_color; background-image: @title_buttons_background_image; background-attachment: @title_buttons_background_attachment; background-repeat: @title_buttons_background_repeat; background-position: @title_buttons_background_position; font: @title_buttons_font; text-decoration: @title_buttons_decoration; height: 30px; line-height: 30px !important; padding: 0 10px; .rounded-corners(@border-radius-medium); /* Adjusted button radius */ }
 .container > .title-bar > .controls:hover li a, .container > .title-bar > .controls:hover li div { color: @title_buttons_hover_color !important; background: @title_buttons_hover_background; font: @title_buttons_hover_font; text-decoration: @title_buttons_hover_decoration !important; }
-.container > .content, .ui-dialog .ui-dialog-content, .ui-dialog .ui-dialog-buttonpane, .container.copy .clone { color: @container_text_color_1; background: @content_background; border-width: @content_border_width; border-style: @content_border_style; border-color: @container_outer_border_color; border-top-width: 0px; padding: 0px; .rounded-corners(@content_border_radius); }
-.content-box { background: @content_area_background; border: @content_area_border; .rounded-corners(@content_area_border_radius); color: @content_area_text_color; font: @content_area_text_font; }
+.container > .content, .ui-dialog .ui-dialog-content, .ui-dialog .ui-dialog-buttonpane, .container.copy .clone { color: @container_text_color_1; background: @content_background; border-width: @content_border_width; border-style: @content_border_style; border-color: @container_outer_border_color; border-top-width: 0px; padding: 0px; .rounded-corners(@content_border_radius); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Added shadow */ }
+.content-box { background: @content_area_background; border: @content_area_border; .rounded-corners(@content_area_border_radius); color: @content_area_text_color; font: @content_area_text_font; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Added shadow */ }
 .content-box a, .container a { color: @container_links_color; font: @content_area_links_font; text-decoration: @content_area_links_decoration; }
-.container > .control-bar { background: @action_bar_background; border: @action_bar_border; border-top-width: 0px; border-bottom-width: 0px; .rounded-corners(@action_bar_border_radius); margin-bottom: 0px; }
+.container > .control-bar { background: @action_bar_background; border: @action_bar_border; border-top-width: 0px; border-bottom-width: 0px; .rounded-corners(@action_bar_border_radius); margin-bottom: 0px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Added shadow */ }
 .container { margin-bottom: 10px; color: @container_text_color_1; }
 .container > .title-bar { min-height: 30px; padding: 0px 10px; }
 .container > .title-bar h1, .container > .title-bar h2, .container > .title-bar h3 { line-height: 30px !important; display: inline; }
@@ -460,7 +561,7 @@ a#logo:hover { color: @banner_text_color !important; text-decoration: @banner_te
 .container abbr.time { color: @timestamp_color; }
 .container .note { color: lighten(@container_text_color_1, 15%); }
 .container > .title-bar > .controls { float: right; }
-.container > .control-bar > .controls { float: right; padding: 5px; color: #000000; }
+.container > .control-bar > .controls { float: right; padding: 5px; color: @text-color-light; } /* Adjusted color */
 .container > .content { overflow: hidden; }
 .controls > li a { display: inline-block; }
 .control-bar .ui-pagination { padding: 5px 5px 3px 10px; }
@@ -469,17 +570,17 @@ a#logo:hover { color: @banner_text_color !important; text-decoration: @banner_te
 .control-bar .controls ul { z-index: 233; }
 .control-bar .controls .ui-selectMenu-box { margin-left: 10px; }
 .control-bar .ui-search { padding-bottom: 5px !important; }
-.ui-selectMenu-box { border: 1px solid darken(@container_inner_border_color, 20%); }
-.ui-selectMenu-box .arrow.down > span { border-top-color: #000000; }
-.ui-dialog { .rounded-corners(); .hsla-bgcolor-safe(@container_outer_border_color, .5); }
+.ui-selectMenu-box { border: 1px solid darken(@container_inner_border_color, 20%); .rounded-corners(@border-radius-medium); } /* Adjusted border-radius */
+.ui-selectMenu-box .arrow.down > span { border-top-color: @text-color-medium; } /* Adjusted color */
+.ui-dialog { .rounded-corners(@border-radius-large); .hsla-bgcolor-safe(@body-bg-color, .8); } /* Adjusted radius and background */
 .ui-dialog .ui-dialog-titlebar-close:hover span, .ui-dialog .ui-dialog-titlebar-close:focus span { background-image:url('@{images_path}/ui-icons.png'); background-position: -20px, 0px; }
-.ui-dialog div.ui-dialog-buttonpane.ui-widget-content { text-align: right; margin-top: 10px; padding: 0 0 0 10px; border-width: 1px; .rounded-corners(5px); }
-.ui-dialog div.section { text-align: center; background-color: @container_background_color_1; border-width: 1px; border-style: solid; border-color: @container_inner_border_color; .rounded-corners(10px); padding: 10px; margin: 10px 0; }
-.ui-search .search-input.filters-input { .rounded-corners(); }
-.ui-search .search-input { line-height: 16px !important; padding: 2px; border-width: 1px; border-style: solid; border-color: darken(@container_inner_border_color, 20%); .rounded-corners(5px, 0, 0, 5px); }
-.ui-search .search-filters-button { display: inline-block; width: auto; height: auto; margin-left: -2px; min-height: 19px; padding: 3px 4px 2px 4px; border-width: 1px 1px 1px 0px !important; border-style: solid; border-color: darken(@container_inner_border_color, 20%); .rounded-corners(0, 5px, 5px, 0); vertical-align: top; cursor: pointer; }
+.ui-dialog div.ui-dialog-buttonpane.ui-widget-content { text-align: right; margin-top: 10px; padding: 0 0 0 10px; border-width: 1px; .rounded-corners(@border-radius-medium); } /* Adjusted radius */
+.ui-dialog div.section { text-align: center; background-color: @section-bg-color; border-width: 1px; border-style: solid; border-color: @border-color-dark; .rounded-corners(@border-radius-large); padding: 10px; margin: 10px 0; } /* Adjusted colors and radius */
+.ui-search .search-input.filters-input { .rounded-corners(@border-radius-medium); } /* Adjusted radius */
+.ui-search .search-input { line-height: 16px !important; padding: 2px; border-width: 1px; border-style: solid; border-color: @border-color-dark; .rounded-corners(@border-radius-medium, 0, 0, @border-radius-medium); /* Adjusted radius */ }
+.ui-search .search-filters-button { display: inline-block; width: auto; height: auto; margin-left: -2px; min-height: 19px; padding: 3px 4px 2px 4px; border-width: 1px 1px 1px 0px !important; border-style: solid; border-color: @border-color-dark; .rounded-corners(0, @border-radius-medium, @border-radius-medium, 0); /* Adjusted radius */ vertical-align: top; cursor: pointer; }
 .ui-search .search-filters-button .icon { display: inline-block; width: auto; height: auto; }
-.ui-search .search-filters-button.state-active { background: @title_buttons_color; }
+.ui-search .search-filters-button.state-active { background: @kz-orange; } /* Adjusted color */
 .event_icon { cursor: pointer; }
 .container.copy .clone { .rounded-corners(0px); border-collapse: inherit; border-bottom-width: 0px; }
 
@@ -490,42 +591,42 @@ a#logo:hover { color: @banner_text_color !important; text-decoration: @banner_te
 .ui-pagination { display: inline-block; overflow: hidden; }
 .ui-pagination li { cursor: pointer; list-style: none; float: left; margin-right: 2px; }
 .ui-pagination li:last-child { margin-right: 0px; }
-.ui-pagination li > a, .ui-pagination li > div { .rounded-corners(3px); font-weight: bold; text-decoration: none; background-color: @pagination_background_color; border: 1px solid darken(@container_inner_border_color, 20%); color: @pagination_text_color; display: inline-block; padding: 4px 5px;  }
-.ui-pagination li > a:hover, .ui-pagination li > div:hover { border-style: solid; text-decoration: none; background-color: @pagination_hover_color; color: @pagination_text_color; border-color: mix(@pagination_text_color, @pagination_background_color, 70%); }
-.ui-pagination li.state-selected > a { border: 0px solid transparent; background-color: @pagination_text_color; color: @pagination_background_color; padding: 5px 6px; cursor: default; }
+.ui-pagination li > a, .ui-pagination li > div { .rounded-corners(@border-radius-small); /* Adjusted to 3px */ font-weight: bold; text-decoration: none; background-color: @pagination_background_color; border: 1px solid @border-color-dark; color: @pagination_text_color; display: inline-block; padding: 4px 5px;  }
+.ui-pagination li > a:hover, .ui-pagination li > div:hover { border-style: solid; text-decoration: none; background-color: @pagination_hover_color; color: @pagination_text_color; border-color: @kz-orange; } /* Adjusted hover border color */
+.ui-pagination li.state-selected > a { border: 0px solid transparent; background-color: @kz-orange; color: @text-color-light; padding: 5px 6px; cursor: default; } /* Adjusted colors */
 .ui-pagination li.state-disabled > a { cursor: default; padding: 4px 5px; border-width: 1px; border-style: solid; opacity: .5; filter: alpha(opacity=50); }
-.ui-pagination li.state-disabled > a:hover { background-color: @pagination_background_color; border-color: mix(@pagination_text_color, @pagination_background_color, 40%); }
+.ui-pagination li.state-disabled > a:hover { background-color: @pagination_background_color; border-color: @border-color-dark; }
 .ui-micro-pagination { overflow: hidden; font-size: 75%; margin-top: 3px; }
 .ui-micro-pagination ul, .ui-micro-pagination ul li div { display: inline; }
 .ui-micro-pagination ul li { list-style: none; display: inline; margin-right: 2px; }
 .ui-micro-pagination ul li:last-child { margin-right: 0px; }
-.ui-micro-pagination ul li > a { display: inline-block; text-decoration: none; padding: 0 3px; color: @pagination_micro_text_color; background-color: @pagination_micro_background_color; border: 1px solid mix(@pagination_text_color, @pagination_background_color, 40%); .rounded-corners(2px); }
-.ui-micro-pagination ul li > a:hover { color: @pagination_micro_text_color; border: 1px solid mix(@pagination_text_color, @pagination_background_color, 70%); background-color: @pagination_micro_hover_color; }
+.ui-micro-pagination ul li > a { display: inline-block; text-decoration: none; padding: 0 3px; color: @pagination_micro_text_color; background-color: @pagination_micro_background_color; border: 1px solid @border-color-dark; .rounded-corners(@border-radius-tiny); /* Adjusted to 2px */ }
+.ui-micro-pagination ul li > a:hover { color: @pagination_micro_text_color; border: 1px solid @kz-orange; background-color: @pagination_micro_hover_color; } /* Adjusted hover border color */
 
 /* Tabs */
-@tabs_background: @container_inner_border_color none left center repeat-x;
-@tabs_border: 1px solid @container_inner_border_color;
-@tabs_border_radius: 5px 5px 0 0;
-@tabs_unselected_background: @container_background_color_2;
+@tabs_background: @card-header-bg-color; /* Solid color */
+@tabs_border: 1px solid @border-color-dark;
+@tabs_border_radius: @border-radius-large @border-radius-large 0 0; /* Adjusted to 8px */
+@tabs_unselected_background: @darker-section-bg-color;
 @tabs_unselected_border: @empty;
-@tabs_unselected_border_radius: 5px 5px 0 0;
-@tabs_unselected_text_color: @container_links_color;
+@tabs_unselected_border_radius: @border-radius-large @border-radius-large 0 0; /* Adjusted to 8px */
+@tabs_unselected_text_color: @text-color-medium;
 @tabs_unselected_text_font: 100% @default_forum_text_font_family;
 @tabs_unselected_text_decoration: none;
-@tabs_selected_background: @container_background_color_1;
+@tabs_selected_background: @section-bg-color;
 @tabs_selected_border: @tabs_unselected_border;
 @tabs_selected_border_radius: @tabs_unselected_border_radius;
-@tabs_selected_text_color: @container_links_color;
+@tabs_selected_text_color: @kz-orange;
 @tabs_selected_text_font: @tabs_unselected_text_font;
 @tabs_selected_text_decoration: @tabs_unselected_text_decoration;
-@tabs_hover_background: @container_highlight_color;
+@tabs_hover_background: @card-header-bg-color;
 @tabs_hover_border: @tabs_unselected_border;
 @tabs_hover_border_radius: @tabs_unselected_border_radius;
-@tabs_hover_text_color: @tabs_unselected_text_color;
+@tabs_hover_text_color: @kz-orange;
 @tabs_hover_text_font: @tabs_unselected_text_font;
 @tabs_hover_text_decoration: @tabs_unselected_text_decoration;
 .ui-tabMenu ul { background: @tabs_background; border: @tabs_border; border-top-width: 0px; border-right-width: 0px; border-left-width: 0px; padding: 5px 5px 0 5px; }
-.ui-tabMenu ul li { height: 26px; list-style: none; float: left; top: 1px; margin: 0 2px 1px 0; position: relative; background: @tabs_unselected_background; border: @tabs_unselected_border; .rounded-corners(@tabs_border_radius); }
+.ui-tabMenu ul li { height: 26px; list-style: none; float: left; top: 1px; margin: 0 2px 1px 0; position: relative; background: @tabs_unselected_background; border: 1px solid @border-color-dark; border-top-width: 0px; .rounded-corners(@tabs_border_radius); }
 .ui-tabMenu ul li a { color: @tabs_unselected_text_color; font: @tabs_unselected_text_font; text-decoration: @tabs_unselected_text_decoration; float: left; padding: 5px 14px; white-space: nowrap; }
 .ui-tabMenu ul li:hover { background: @tabs_hover_background; border: @tabs_hover_border; .rounded-corners(@tabs_hover_border_radius); }
 .ui-tabMenu ul li:hover a { color: @tabs_hover_text_color; font: @tabs_hover_text_font; text-decoration: @tabs_hover_text_decoration; }
@@ -535,25 +636,25 @@ a#logo:hover { color: @banner_text_color !important; text-decoration: @banner_te
 /* Tables / Lists */
 @lists_inner_border_width: 1px;
 @lists_inner_border_style: solid;
-@lists_background: @empty;
-@lists_text_color: @container_text_color_1;
+@lists_background: transparent; /* Transparent to show container background */
+@lists_text_color: @text-color-medium;
 @lists_text_font: @empty;
-@lists_links_color: @container_links_color;
+@lists_links_color: @kz-orange;
 @lists_links_font: @empty;
 @lists_links_decoration: none;
-@lists_hover_background_image: @empty;
+@lists_hover_background_image: none;
 @lists_hover_background_attachment: @empty;
-@lists_hover_background_repeat: @empty;
-@lists_hover_background_position: @empty;
-@lists_hover_text_color: @lists_text_color;
+@lists_hover_background_repeat: no-repeat;
+@lists_hover_background_position: center center;
+@lists_hover_text_color: @text-color-light;
 @lists_hover_text_font: @lists_text_font;
-@lists_hover_links_color: @lists_links_color;
+@lists_hover_links_color: @kz-orange;
 @lists_hover_links_font: @lists_links_font;
 @lists_hover_links_decoration: underline;
-@lists_selected_background: @container_highlight_color;
-@lists_selected_text_color: @lists_text_color;
+@lists_selected_background: @card-header-bg-color;
+@lists_selected_text_color: @text-color-light;
 @lists_selected_text_font: @lists_text_font;
-@lists_selected_links_color: @lists_links_color;
+@lists_selected_links_color: @kz-orange;
 @lists_selected_links_font: @lists_links_font;
 @lists_selected_links_decoration: none;
 table.list > thead > tr > th, table.list > tbody > tr > td { border-width: 0px @lists_inner_border_width @lists_inner_border_width 0px; border-style: @lists_inner_border_style; border-color: @container_inner_border_color; vertical-align: middle; padding: 10px; .box-sizing(); }
@@ -576,14 +677,14 @@ table.list .checkbox-placeholder { border-right: none !important; }
 table.list abbr.time, table.list .last-edited { color: @timestamp_color; }
 
 /* New Icons */
-@new_background: @title_buttons_background_color @all_gradients left center repeat-x;
-@new_border: 1px solid darken(@title_buttons_background_color, 15%);
-@new_border_radius: 5px;
+@new_background: @kz-orange; /* Solid orange */
+@new_border: 1px solid darken(@kz-orange, 15%);
+@new_border_radius: @border-radius-small; /* Adjusted to 4px */
 @new_link_transform: uppercase;
-@new_link_color: @title_buttons_color;
+@new_link_color: @text-color-light;
 @new_link_font: bold 7px @default_forum_text_font_family;
 @new_link_decoration: none;
-@new_hover_background: @new_background;
+@new_hover_background: lighten(@kz-orange, 5%);
 @new_hover_border: @new_border;
 @new_hover_border_radius: @new_border_radius;
 @new_hover_link_transform: @new_link_transform;
@@ -600,21 +701,21 @@ table.list abbr.time, table.list .last-edited { color: @timestamp_color; }
 .new-icon:hover, .new-icon:hover a { color: @new_hover_link_color !important; font: @new_hover_link_font; text-decoration: @new_hover_link_decoration; text-transform: @new_hover_link_transform; }
 
 /* Footer */
-@footer_text_color: @link_color;
+@footer_text_color: @text-color-medium;
 @footer_text_font: .8em @default_forum_text_font_family;
 @footer_text_decoration: none;
-@footer_background: ~"";
-@footer_border: ~"";
-@footer_hover_color: @footer_text_color;
+@footer_background: transparent;
+@footer_border: none;
+@footer_hover_color: @kz-orange;
 @footer_hover_font: @footer_text_font;
-@footer_hover_decoration: @footer_text_decoration;
-@footer_pipe_color: @default_forum_text_color;
-@footer_copyright_color: @default_forum_text_color;
+@footer_hover_decoration: underline;
+@footer_pipe_color: @text-color-dark;
+@footer_copyright_color: @text-color-dark;
 @footer_copyright_font: .8em @default_forum_text_font_family;
-@footer_pb_link_color: @link_color;
+@footer_pb_link_color: @kz-orange;
 @footer_pb_link_font: 100% @default_forum_text_font_family;
 @footer_pb_link_decoration: none;
-footer { text-align: center; display: block; background: @footer_background; border: @footer_border; padding-top: 5px; padding-bottom: 28px; }
+footer { text-align: center; display: block; background: @footer_background; border: @footer_border; padding-top: 20px; /* Increased padding */ padding-bottom: 28px; color: @footer_text_color; /* Ensure footer text has a color */ }
 footer .footer-links { margin: 0 auto; color: @footer_pipe_color; }
 footer .footer-links a { color: @footer_text_color; text-decoration: @footer_text_decoration; font: @footer_text_font; }
 footer .footer-links a:hover { color: @footer_hover_color; text-decoration: @footer_hover_decoration; font: @footer_hover_font; }
@@ -623,7 +724,7 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 
 
 /**************************************************************************
- *                                 Pages                                  *
+ * Pages                                  *
  **************************************************************************/
 
  /* Help */
@@ -631,9 +732,13 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 .help.content ul { margin-left: 31px; list-style-type: disc; }
 .help.content ol { margin-left: 31px; list-style-type: decimal; }
 .help.content ol li, .help.content ul li { padding: 2px 0; }
-.help.content h1 { font-size: 18px; font-weight: bold; }
-.help.content h2 { font-size: 16px; font-weight: bold; }
-.help.content h3 { font-size: 14px; font-weight: bold; }
+.help.content h1 { font-size: 18px; font-weight: bold; color: @text-color-light; } /* Adjusted color */
+.help.content h2 { font-size: 16px; font-weight: bold; color: @text-color-light; } /* Adjusted color */
+.help.content h3 { font-size: 14px; font-weight: bold; color: @kz-orange; } /* Adjusted color */
+@posts_code_background: @darker-section-bg-color; /* Adjusted for consistency */
+@posts_code_border: 1px solid @border-color-dark;
+@posts_code_text_color: @text-color-medium;
+@posts_code_text_font: 90% monospace; /* Kept original font for code */
 .help.content code { display: block; border: @posts_code_border; padding: 5px; margin: 0 16px; background: @posts_code_background; color: @posts_code_text_color; font: @posts_code_text_font; white-space: pre-wrap; }
 
  /* Search Page */
@@ -646,7 +751,7 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 .search .footer { font-size: 14px; line-height: 20px !important; }
 .search .footer input { float: right; }
 .search .footer #transcription { width: 89%; font-size: 11px; }
-.search .disabled { background-color: #DDDDDD; }
+.search .disabled { background-color: @border-color-dark; } /* Adjusted color */
 .search #what input, .search #where input, .search #who input { width: 230px; }
 .search #who select { width: 235px; }
 .search #when input { width: 80px; }
@@ -654,29 +759,29 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 #where-board-subboard, #where-without, #where-category, #who-member-group { display: none; }
 
 /* Calendar Page */
-@cal_background: @container_background_color_1;
-@cal_border: 1px solid @container_inner_border_color;
-@cal_border_radius: 10px;
-@cal_inner_border: 1px solid @container_inner_border_color;
+@cal_background: @section-bg-color;
+@cal_border: 1px solid @border-color-dark;
+@cal_border_radius: @border-radius-large; /* Adjusted to 8px */
+@cal_inner_border: 1px solid @border-color-dark;
 @cal_link_alignment: right;
-@cal_title_color: @container_text_color_1;
+@cal_title_color: @text-color-light;
 @cal_title_font: @empty;
-@cal_day_background: @container_highlight_color;
-@cal_day_link_color: @container_links_color;
+@cal_day_background: @kz-orange; /* Orange for current day */
+@cal_day_link_color: @text-color-light;
 @cal_day_link_font: @empty;
-@cal_day_link_decoration: @empty;
-@cal_cur_month_background: @container_background_color_2;
-@cal_cur_month_link_color: @container_links_color;
+@cal_day_link_decoration: none;
+@cal_cur_month_background: @card-header-bg-color; /* Darker for current month */
+@cal_cur_month_link_color: @kz-orange;
 @cal_cur_month_link_font: @empty;
-@cal_cur_month_link_decoration: @empty;
-@cal_month_background: @container_background_color_1;
-@cal_month_link_color: @container_text_color_1;
+@cal_cur_month_link_decoration: none;
+@cal_month_background: @darker-section-bg-color; /* Even darker for other months */
+@cal_month_link_color: @text-color-medium;
 @cal_month_link_font: @empty;
-@cal_month_link_decoration: @empty;
-@cal_list_title_border_radius: 10px 10px 0 0;
+@cal_month_link_decoration: none;
+@cal_list_title_border_radius: @border-radius-large @border-radius-large 0 0; /* Adjusted to 8px */
 @cal_list_align_icon: center;
 @cal_list_align_last: right;
-@cal_list_last_color: @empty;
+@cal_list_last_color: @text-color-dark;
 @cal_list_last_font: @empty;
 .cal-box { background: @cal_background; border: @cal_border; .rounded-corners(@cal_border_radius); width: 100%; border-collapse: separate; }
 .cal-box th { padding: 3px 0px; }
@@ -697,7 +802,7 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 .cal-current-panel .head a { font-weight: bold; font-size: 12px; padding: 2px; overflow: hidden; }
 .cal-preview-panel { width: 180px; padding-right: 10px; vertical-align: top; }
 .cal-preview-panel .header th { border-right: none; }
-.cal-preview-panel .header th a { color: @container_links_color; }
+.cal-preview-panel .header th a { color: @kz-orange; }
 .cal-preview-panel td { padding: 2px 0px; }
 .cal-preview-panel .weekdays td { padding-top: 5px; }
 .cal-preview-panel .cal-box { table-layout: auto; width: 100%; text-align: center; padding-bottom: 10px; margin-bottom: 10px; }
@@ -720,16 +825,16 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 .calendar .control-bar .calendar-jump .button { float: left; }
 .calendar .control-bar .calendar_go_button { display: none; margin: 0 5px 0 10px; }
 #to-date-container { display: none; }
-.ui-datepicker { .hsla-bgcolor-safe(@container_outer_border_color, .5); }
-.ui-datepicker .ui-datepicker-header { background-color: @title_bar_background_color; background-image: @all_gradients; border-color: @container_outer_border_color; }
-.ui-datepicker .ui-datepicker-title { color: @title_text_color; }
-.ui-datepicker table { background-color: @container_background_color_1; border-color: @container_outer_border_color; }
+.ui-datepicker { .hsla-bgcolor-safe(@body-bg-color, .8); } /* Adjusted background */
+.ui-datepicker .ui-datepicker-header { background-color: @section-bg-color; background-image: none; border-color: @border-color-dark; } /* Adjusted background and border */
+.ui-datepicker .ui-datepicker-title { color: @text-color-light; } /* Adjusted color */
+.ui-datepicker table { background-color: @darker-section-bg-color; border-color: @border-color-dark; } /* Adjusted background and border */
 .ie7 .calendar .control-bar .calendar_go_button { margin-left: 0; }
 .ie7 .calendar .control-bar .controls .ui-selectMenu-box { margin-left: 0; margin-right: 10px; }
 
 /* Members Page */
-@members_background: @empty;
-@members_text_color: @empty;
+@members_background: transparent;
+@members_text_color: @text-color-medium;
 @members_text_font: @empty;
 @members_text_align: left;
 @members_align_name: left;
@@ -763,7 +868,7 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 .show-user .list .main { border-right-width: 0; border-width: 1px 0 0 0;  padding: 5px 33px 5px 33px; }
 .show-user .delete { width: 60px; padding: 5px 10px 5px 5px; border-width: 1px 1px 0 0; vertical-align: middle; text-align: right; }
 .show-user .time-container { width: 22%; padding: 3px 10px 3px 3px; text-align: right; border-width: 1px 0 0 0; }
-.show-user a.show-more { border-top: 1px solid @container_inner_border_color; display: block; font-weight: bold; padding: 8px 0px; text-align: center; }
+.show-user a.show-more { border-top: 1px solid @border-color-dark; display: block; font-weight: bold; padding: 8px 0px; text-align: center; }
 .show-user .content-box { margin-bottom: 10px; overflow: hidden; }
 .show-user .content-box:last-child { margin-bottom: 0px; }
 .show-user .following { table-layout: auto; }
@@ -837,10 +942,9 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 #user_block_list .block_list_options label { position: relative; top: -2px; }
 .edit-user #avatar-options .content-box { position: relative; margin: 10px 0px 0px 10px; float: left; min-height: 250px; padding: 10px; text-align: center; width: 150px; }
 .edit-user #avatar-options .content-box.options { width: 100%; min-width: 279px; max-width: 350px; text-align: left; }
-#forum-avatars-wrapper img:hover { border-width: 3px; border-style: solid; border-color: @link_color; .rounded-corners(); margin: -3px; }
+#forum-avatars-wrapper img:hover { border-width: 3px; border-style: solid; border-color: @kz-orange; .rounded-corners(@border-radius-medium); margin: -3px; } /* Adjusted color and radius */
 #image-avatar-editor-container .wrapper { padding: 10px 5px 5px 5px; margin-top: 15px; }
 .ie7 #image-avatar-editor-container .wrapper { width: 520px; }
-#image-avatar-editor-container .wrapper.first { clear: both; margin-top: 10px; }
 #image-avatar-editor-container span.fileupload-buttonbar { display: inline-block; margin: 10px 0; }
 #image-avatar-editor-container .files { margin: 0; }
 #image-avatar-editor-container #link-image { height: 18px; }
@@ -857,20 +961,20 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 #badge-options .badge-thumbs { float: left; padding: 5px !important; }
 #badge-options .badge-thumbs .badge-thumb, #badge-options .badge-thumbs .badge-icons { float: left; }
 #badge-options .badge-icons img { margin: 5px 0 5px 10px; vertical-align: middle; }
-#badge-options .badge-thumbs .badge-icons img, #badge-options .badge-thumbs .badge-icons input { margin: 5px 0 0 10px; width: 16px; height: 16px; }
-#badge-options .badge-thumbs .badge-icons input { margin-top: 8px; padding: 0; }
+#badge-options .badge-icons img, #badge-options .badge-icons input { margin: 5px 0 0 10px; width: 16px; height: 16px; }
+#badge-options .badge-icons input { margin-top: 8px; padding: 0; }
 #badge-options .badge-thumbs .small { vertical-align: bottom; }
 #badge-options .badges-dont-have .badge-icons img { margin-top: 16px; }
-#badge-options .badge-gift, #badge-options .badge-use-action { color: @container_text_color_1; }
+#badge-options .badge-gift, #badge-options .badge-use-action { color: @text-color-medium; }
 
 /* Board List */
-@board_names_color: @empty;
+@board_names_color: @kz-orange; /* Changed to orange */
 @board_names_font: 105% @default_forum_text_font_family;
-@board_desc_color: @empty;
+@board_desc_color: @text-color-medium;
 @board_desc_font: normal 90% @default_forum_text_font_family;
-@board_mod_color: @empty;
+@board_mod_color: @text-color-dark;
 @board_mod_font: 75% @default_forum_text_font_family;
-@board_sub_color: @empty;
+@board_sub_color: @text-color-dark;
 @board_sub_font: 75% @default_forum_text_font_family;
 @board_align_main: left;
 @board_align_threads: center;
@@ -927,22 +1031,45 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 .conversations .item.new .new-icon { display: inline-block; }
 
 /* Polls */
-@polls_selection_border: 1px solid @container_inner_border_color;
-@polls_selection_background: @container_highlight_color;
-@polls_rank_default_background: #AAAAAA url('@{images_path}/gradients/bar.png') repeat-x left center;
-@polls_rank_default_border: 1px solid #000000;
-@polls_rank_default_border_radius: 5px;
-@polls_rank_default_rank_color: #FFFFFF;
-@polls_rank_default_rank_background: #000000;
-@polls_rank_default_rank_border: 5px;
-@polls_rank_first_background_color: #FFCC22;
-@polls_rank_second_background_color: #66DDEE;
-@polls_rank_third_background_color: #FF0000;
+@polls_selection_border: 1px solid @border-color-dark;
+@polls_selection_background: @card-header-bg-color;
+@polls_rank_default_background: @section-bg-color; /* Adjusted */
+@polls_rank_default_border: 1px solid @border-color-dark;
+@polls_rank_default_border_radius: @border-radius-small; /* Adjusted to 4px */
+@polls_rank_default_rank_color: @text-color-light;
+@polls_rank_default_rank_background: @darker-section-bg-color; /* Adjusted */
+@polls_rank_default_rank_border: @border-radius-small; /* Adjusted to 4px */
+@polls_rank_first_background_color: @kz-orange; /* Orange for first */
+@polls_rank_second_background_color: @blue-accent; /* Blue for second */
+@polls_rank_third_background_color: #FF0000; /* Kept red for third (common for warnings) */
 .ui-poll .results td .select-box { min-width: 15px; min-height: 15px; border: @polls_selection_border; }
 .ui-poll .results tr.ui-selected { background: @polls_selection_background; }
 .ui-poll .poll-vote-bar .bar { background: @polls_rank_default_background; border: @polls_rank_default_border; border-right-width: 0px; .rounded-corners(@polls_rank_default_border_radius, 0, 0, @polls_rank_default_border_radius); float: left; height: 17px; min-width: 5px; }
 .ui-poll .poll-vote-bar .rank { float: left; background: @polls_rank_default_background; border: @polls_rank_default_border; border-left-width: 0px;  height: 17px; padding-left: 2px; .rounded-corners(0, @polls_rank_default_border_radius, @polls_rank_default_border_radius, 0); }
 .ui-poll .poll-vote-bar .rank div { margin-right: 1px; margin-top: 1px; color: @polls_rank_default_rank_color; font-size: 80%; background: @polls_rank_default_rank_background; opacity: .5; filter: alpha(opacity=50); padding: 1px 2px; .rounded-corners(@polls_rank_default_rank_border); }
+.ui-poll .poll-vote-bar.rank-1 .rank, .ui-poll .poll-vote-bar.rank-1 .bar { background-color: @polls_rank_first_background_color; }
+.ui-poll .poll-vote-bar.rank-2 .rank, .ui-poll .poll-vote-bar.rank-2 .bar { background-color: @polls_rank_second_background_color; }
+.ui-poll .poll-vote-bar.rank-3 .rank, .ui-poll .poll-vote-bar.rank-3 .bar { background-color: @polls_rank_third_background_color; }
+.ui-poll { padding: 10px; }
+.ui-poll table { table-layout: fixed; width: auto; }
+.ui-poll .icon-poll { margin-right: 5px; }
+/* Polls */
+@polls_selection_border: 1px solid @container_inner_border_color;
+@polls_selection_background: @container_highlight_color;
+@polls_rank_default_background: @card-header-bg-color; /* Changed to match main.css aesthetic */
+@polls_rank_default_border: 1px solid @border-color-dark; /* Changed to match main.css aesthetic */
+@polls_rank_default_border_radius: @border-radius-small; /* Adjusted to small radius */
+@polls_rank_default_rank_color: @text-color-light; /* Changed to light text color */
+@polls_rank_default_rank_background: @section-bg-color; /* Changed to match main.css aesthetic */
+@polls_rank_default_rank_border: @border-radius-small; /* Adjusted to small radius */
+@polls_rank_first_background_color: @kz-orange; /* Changed to orange */
+@polls_rank_second_background_color: @blue-accent; /* Changed to blue accent */
+@polls_rank_third_background_color: #FF0000; /* Kept red for contrast/warning */
+.ui-poll .results td .select-box { min-width: 15px; min-height: 15px; border: @polls_selection_border; }
+.ui-poll .results tr.ui-selected { background: @polls_selection_background; }
+.ui-poll .poll-vote-bar .bar { background: @polls_rank_default_background; border: @polls_rank_default_border; border-right-width: 0px; .rounded-corners(@polls_rank_default_border_radius, 0, 0, @polls_rank_default_border_radius); float: left; height: 17px; min-width: 5px; }
+.ui-poll .poll-vote-bar .rank { float: left; background: @polls_rank_default_background; border: @polls_rank_default_border; border-left-width: 0px;  height: 17px; padding-left: 2px; .rounded-corners(0, @polls_rank_default_border_radius, @polls_rank_default_border_radius, 0); }
+.ui-poll .poll-vote-bar .rank div { margin-right: 1px; margin-top: 1px; color: @polls_rank_default_rank_color; font-size: 80%; background: @polls_rank_default_rank_background; opacity: .8; /* Slightly less opaque */ font-size: 0.7em; /* Adjusted font size */ margin-right: 2px; padding: 1px 3px 0px 3px; /* Adjusted padding */ .rounded-corners(@polls_rank_default_rank_border); }
 .ui-poll .poll-vote-bar.rank-1 .rank, .ui-poll .poll-vote-bar.rank-1 .bar { background-color: @polls_rank_first_background_color; }
 .ui-poll .poll-vote-bar.rank-2 .rank, .ui-poll .poll-vote-bar.rank-2 .bar { background-color: @polls_rank_second_background_color; }
 .ui-poll .poll-vote-bar.rank-3 .rank, .ui-poll .poll-vote-bar.rank-3 .bar { background-color: @polls_rank_third_background_color; }
@@ -975,19 +1102,19 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 @posts_even_background_position: @empty;
 @posts_even_text_color: @container_text_color_2;
 @posts_separator_border: 1px solid @container_inner_border_color;
-@posts_likes_color: @empty;
+@posts_likes_color: @kz-orange; /* Changed to orange */
 @posts_likes_font: 80% @default_forum_text_font_family;
 @posts_header_border: 1px solid @container_inner_border_color;
-@posts_code_background: @container_background_color_1;
-@posts_code_border: 1px solid @container_inner_border_color;
-@posts_code_text_color: @container_text_color_1;
-@posts_code_text_font: @empty;
-@posts_edited_text_color: @empty;
+@posts_code_background: @darker-section-bg-color; /* Changed to darker section background */
+@posts_code_border: 1px solid @border-color-dark; /* Changed to dark border */
+@posts_code_text_color: @text-color-medium; /* Changed to medium text color */
+@posts_code_text_font: 90% "SF-Pro", sans-serif; /* Adjusted font and size */
+@posts_edited_text_color: @text-color-dark; /* Changed to dark text color */
 @posts_edited_text_font: 80% @default_forum_text_font_family;
 @posts_signatures_border: 1px solid @container_inner_border_color;
-@posts_signatures_text_color: @empty;
+@posts_signatures_text_color: @text-color-medium; /* Changed to medium text color */
 @posts_signatures_text_font: 80% @default_forum_text_font_family;
-.posts .post, .post .quote div.quote div.quote_body, .post.even .quote div.quote_body { color: @posts_odd_text_color; background-color: @posts_odd_background_color; background-image: @posts_odd_background_image; background-attachment: @posts_odd_background_attachment; background-repeat: @posts_odd_background_repeat; background-position: @posts_odd_background_position; }
+.posts .post, .post .quote div.quote div.quote_body, .post.even .quote div.quote_body { color: @posts_odd_text_color; background-color: @posts_odd_background_color; background-image: @posts_odd_background_image; background-attachment: @posts_odd_background_attachment; background-repeat: @posts_odd_background_repeat; background-position: @posts_odd_background_position; border-radius: @border-radius-medium; /* Added border-radius */ padding: 15px; /* Added padding */ margin-bottom: 15px; /* Added margin */ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Added shadow */ }
 .posts .post.even, .post .quote div.quote_body, .post.even .quote div.quote div.quote_body { color: @posts_even_text_color; background-color: @posts_even_background_color; background-image: @posts_even_background_image; background-attachment: @posts_even_background_attachment; background-repeat: @posts_even_background_repeat; background-position: @posts_even_background_position; }
 .post.item abbr.time, .post.item.even .quote abbr.time, .post.item .quote .quote abbr.time { color: @posts_odd_text_color; }
 .post.item.even abbr.time, .post.item .quote abbr.time, .post.item.even .quote .quote abbr.time { color: @posts_even_text_color; }
@@ -1040,14 +1167,14 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 @messages_even_text_color: @container_text_color_2;
 @messages_header_border: 1px solid @container_inner_border_color;
 @messages_participants_border: 1px solid @container_inner_border_color;
-@messages_code_background: @container_background_color_1;
-@messages_code_border: 1px solid @container_inner_border_color;
-@messages_code_text_color: @container_text_color_1;
-@messages_code_text_font: @empty;
+@messages_code_background: @darker-section-bg-color; /* Changed to darker section background */
+@messages_code_border: 1px solid @border-color-dark; /* Changed to dark border */
+@messages_code_text_color: @text-color-medium; /* Changed to medium text color */
+@messages_code_text_font: 90% "SF-Pro", sans-serif; /* Adjusted font and size */
 @messages_signatures_border: 1px solid @container_inner_border_color;
-@messages_signatures_text_color: @empty;
+@messages_signatures_text_color: @text-color-medium; /* Changed to medium text color */
 @messages_signatures_text_font: 80% @default_forum_text_font_family;
-.messages .item { color: @messages_odd_text_color; background: @messages_odd_background; }
+.messages .item { color: @messages_odd_text_color; background: @messages_odd_background; border-radius: @border-radius-medium; /* Added border-radius */ padding: 15px; /* Added padding */ margin-bottom: 15px; /* Added margin */ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Added shadow */ }
 .messages .item.even { color: @messages_even_text_color; background: @messages_even_background; }
 .messages .item .quote div.quote div.quote_body { color: @messages_odd_text_color; background: @messages_odd_background; }
 .messages .item.even .quote div.quote_body { color: @messages_odd_text_color; background: @messages_odd_background; }
@@ -1067,10 +1194,6 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 .messages .item .content .message { overflow-x: auto; overflow-y: hidden; margin-bottom: 1.3em; }
 .messages .item .content .message table td { padding: 3px; }
 .messages .item .content code { display: block; border: @messages_code_border; padding: 5px; margin-left: 16px; margin-right: 16px; background: @messages_code_background; color: @messages_code_text_color; font: @messages_code_text_font; white-space: pre-wrap; }
-.messages .item .content-head .info { float: left; margin-top: 3px; line-height: 20px !important; }
-.messages .item .content-head .info .date { vertical-align: -7px; }
-.messages .item .content-head .controls { float: right; }
-.messages .item .content-head .controls > a { float: left; margin-left: 3px; padding-right: 5px; display: inline; }
 .messages .item .foot { padding-left: 10px; vertical-align: bottom; }
 .messages .item .foot .signature { text-align: left; color: @messages_signatures_text_color; font: @messages_signatures_text_font; vertical-align: bottom; border: @messages_signatures_border; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; padding-top: 10px; margin-top: 10px; }
 .message .post-method { vertical-align: -7px; font-size: .8em; }
@@ -1085,24 +1208,24 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 
 
 /**************************************************************************
- *                                Objects                                 *
+ * Objects                                 *
  **************************************************************************/
 
- /* Micro Profiles */
+/* Micro Profiles */
 @micro_background: @container_background_color_1;
 @micro_border: 1px solid @container_inner_border_color;
-@micro_border_radius: 5px;
-@micro_text_color: @empty;
-@micro_text_font: @empty;
-@micro_link_color: @empty;
-@micro_link_font: @empty;
-@micro_link_decoration: @empty;
+@micro_border_radius: @border-radius-medium; /* Adjusted to medium radius */
+@micro_text_color: @text-color-medium; /* Changed to medium text color */
+@micro_text_font: 90% @default_forum_text_font_family; /* Adjusted font size */
+@micro_link_color: @kz-orange; /* Changed to orange */
+@micro_link_font: 100% @default_forum_text_font_family; /* Adjusted font */
+@micro_link_decoration: none;
 @micro_remove_background: @container_background_color_1;
 @micro_remove_border: 1px solid @container_inner_border_color;
-@micro_remove_border_radius: 0 5px 5px 0;
+@micro_remove_border_radius: 0 @border-radius-medium @border-radius-medium 0; /* Adjusted border-radius */
 @micro_remove_text_color: @container_text_color_1;
 @micro_remove_text_font: bold 80% @default_forum_text_font_family;
-.micro-profile { color: @micro_text_color; font: @micro_text_font; position: relative; height: 50px; width: 200px; display: inline-block; padding: 5px; margin-bottom: 3px; border: @micro_border; background: @micro_background; .rounded-corners(@micro_border_radius); overflow: hidden; }
+.micro-profile { color: @micro_text_color; font: @micro_text_font; position: relative; height: 50px; width: 200px; display: inline-block; padding: 5px; margin-bottom: 3px; border: @micro_border; background: @micro_background; .rounded-corners(@micro_border_radius); overflow: hidden; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow */ }
 .grp_recipients_div li { color: @micro_text_color; font: @micro_text_font; position: relative; width: 240px; display: inline-block; margin: 3px; padding: 3px 22px 3px 5px; border: @micro_border; background: @micro_background; .rounded-corners(@micro_border_radius); overflow: hidden; float: left; }
 .micro-profile a, .grp_recipients_div li a { color: @micro_link_color; font: @micro_link_font; text-decoration: @micro_link_decoration; }
 .user-search-selection .ui-selectlist-item .close { color: @micro_remove_text_color; font: @micro_remove_text_font; background: @micro_remove_background; border: @micro_remove_border; .rounded-corners(@micro_remove_border_radius); cursor: pointer; height: 35px; padding: 20px 3px 5px; position: absolute; right: 0px; }
@@ -1114,7 +1237,7 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 .user-search-selectlist .content { cursor: pointer; padding: 1px 0px; }
 .user-search-selectlist .micro-profile .info { width: 200px; }
 .user-search-selection .ui-selectlist-item { float: left; margin-right: 5px; }
-.user-search-selection .ui-selectlist-item .micro-profile { .rounded-corners(5px, 0, 0, 5px); }
+.user-search-selection .ui-selectlist-item .micro-profile { .rounded-corners(@border-radius-medium, 0, 0, @border-radius-medium); } /* Adjusted border-radius */
 .user-search-displaybox { min-width: 250px; z-index: 99999; }
 .user-search-displaybox .control-bar { border: none; }
 .user-search-displaybox .control-bar .ui-pagination { padding: 5px; display: inherit; }
@@ -1125,50 +1248,50 @@ footer .footer-text a { color: @footer_pb_link_color; text-decoration: @footer_p
 .ie7 .user-search-selectlist .micro-profile { margin: 1px 68px 1px 67px; width: 198px; display: inline-block; }
 
 /* Mini Profiles */
-@mini_background: transparent;
-@mini_border: 1px solid @container_inner_border_color;
-@mini_border_radius: 10px;
+@mini_background: @section-bg-color; /* Changed to section background */
+@mini_border: 1px solid @border-color-dark; /* Changed to dark border */
+@mini_border_radius: @border-radius-medium; /* Adjusted to medium radius */
 @mini_text_align: left;
-@mini_text_color: @container_text_color_1;
-@mini_text_font: @empty;
-@mini_links_color: @container_links_color;
-@mini_links_font: @empty;
-@mini_links_decoration: @empty;
+@mini_text_color: @text-color-medium; /* Changed to medium text color */
+@mini_text_font: 90% @default_forum_text_font_family; /* Adjusted font size */
+@mini_links_color: @kz-orange; /* Changed to orange */
+@mini_links_font: 100% @default_forum_text_font_family; /* Adjusted font */
+@mini_links_decoration: none;
 @mini_avatar_align: center;
-@mini_personal_text_color: @container_text_color_1;
+@mini_personal_text_color: @text-color-medium; /* Changed to medium text color */
 @mini_personal_text_font: 75% @default_forum_text_font_family;
 @mini_personal_text_align: left;
-@mini_info_text_color: @container_text_color_1;
+@mini_info_text_color: @text-color-medium; /* Changed to medium text color */
 @mini_info_text_font: 75% @default_forum_text_font_family;
 @mini_info_text_align: left;
-@mini_even_background: @mini_background;
+@mini_even_background: @darker-section-bg-color; /* Changed to darker section background */
 @mini_even_border: @mini_border;
 @mini_even_border_radius: @mini_border_radius;
 @mini_even_text_align: @mini_text_align;
-@mini_even_text_color: @container_text_color_2;
+@mini_even_text_color: @text-color-medium; /* Changed to medium text color */
 @mini_even_text_font: @mini_text_font;
-@mini_even_links_color: @container_links_color;
+@mini_even_links_color: @kz-orange; /* Changed to orange */
 @mini_even_links_font: @mini_links_font;
 @mini_even_links_decoration: @mini_links_decoration;
-@mini_even_personal_text_color: @container_text_color_2;
+@mini_even_personal_text_color: @text-color-medium; /* Changed to medium text color */
 @mini_even_personal_text_font: @mini_personal_text_font;
 @mini_even_personal_text_align: @mini_personal_text_align;
-@mini_even_info_text_color: @container_text_color_2;
+@mini_even_info_text_color: @text-color-medium; /* Changed to medium text color */
 @mini_even_info_text_font: @mini_info_text_font;
 @mini_even_info_text_align: @mini_info_text_align;
-@mini_warning_background: #AAAAAA url("@{images_path}/gradients/bar.png") repeat-x scroll left center;
-@mini_warning_border: 1px solid #000000;
-@mini_warning_border_radius: 5px;
+@mini_warning_background: @card-header-bg-color; /* Changed to card header background */
+@mini_warning_border: 1px solid @border-color-dark; /* Changed to dark border */
+@mini_warning_border_radius: @border-radius-small; /* Adjusted to small radius */
 @mini_warning_text_align: right;
-@mini_warning_number_background_color: #000000;
-@mini_warning_number_border_radius: 5px;
-@mini_warning_number_text_color: #FFFFFF;
-@mini_warning_number_text_font: @empty;
-@mini_warning_number_text_decoration: @empty;
-@mini_warning_low_background_color: #FFCC22;
-@mini_warning_medium_background_color: #FF6611;
-@mini_warning_high_background_color: #FF0000;
-.mini-profile { color: @mini_text_color; font: @mini_text_font; background: @mini_background; border: @mini_border; .rounded-corners(@mini_border_radius); text-align: @mini_text_align; overflow: hidden; padding: 13px 10px; width: 150px; }
+@mini_warning_number_background_color: @section-bg-color; /* Changed to section background */
+@mini_warning_number_border_radius: @border-radius-small; /* Adjusted to small radius */
+@mini_warning_number_text_color: @text-color-light; /* Changed to light text color */
+@mini_warning_number_text_font: 0.7em @default_forum_text_font_family; /* Adjusted font size */
+@mini_warning_number_text_decoration: none;
+@mini_warning_low_background_color: @kz-orange; /* Changed to orange */
+@mini_warning_medium_background_color: @blue-accent; /* Changed to blue accent */
+@mini_warning_high_background_color: #FF0000; /* Kept red */
+.mini-profile { color: @mini_text_color; font: @mini_text_font; background: @mini_background; border: @mini_border; .rounded-corners(@mini_border_radius); text-align: @mini_text_align; overflow: hidden; padding: 13px 10px; width: 150px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Added shadow */ }
 .mini-profile .personal-text { color: @mini_personal_text_color; display: block; font: @mini_personal_text_font; text-align: @mini_personal_text_align; }
 .mini-profile .info { color: @mini_info_text_color; font: @mini_info_text_font; text-align: @mini_info_text_align; }
 div.mini-profile a { color: @mini_links_color; font: @mini_links_font; text-decoration: @mini_links_decoration; }
@@ -1177,7 +1300,7 @@ div.mini-profile a { color: @mini_links_color; font: @mini_links_font; text-deco
 .even .mini-profile .info { color: @mini_even_info_text_color; font: @mini_even_info_text_font; text-align: @mini_even_info_text_align; }
 .even div.mini-profile a { color: @mini_even_links_color; font: @mini_even_links_font; text-decoration: @mini_even_links_decoration; }
 .warning-bar { background: @mini_warning_background; border: @mini_warning_border; .rounded-corners(@mini_warning_border_radius); padding-bottom: 2px; height: 14px; line-height: 100%; text-align: @mini_warning_text_align; min-width: 40px !important; }
-.warning-bar .number { color: @mini_warning_number_text_color; font: @mini_warning_number_text_font; text-decoration: @mini_warning_number_text_decoration; background-color: @mini_warning_number_background_color; .rounded-corners(@mini_warning_number_border_radius); opacity: 0.5; font-size: 0.6em; margin-right: 1px; padding: 0px 2px 1px 2px; }
+.warning-bar .number { color: @mini_warning_number_text_color; font: @mini_warning_number_text_font; text-decoration: @mini_warning_number_text_decoration; background-color: @mini_warning_number_background_color; .rounded-corners(@mini_warning_number_border_radius); opacity: 0.8; /* Adjusted opacity */ font-size: 0.6em; margin-right: 1px; padding: 0px 2px 1px 2px; }
 .warning-low { background-color: @mini_warning_low_background_color; background-position: center; }
 .warning-medium { background-color: @mini_warning_medium_background_color; background-position: center; }
 .warning-high { background-color: @mini_warning_high_background_color; background-position: center; }
@@ -1203,56 +1326,56 @@ div.mini-profile a { color: @mini_links_color; font: @mini_links_font; text-deco
 .mini-profile .badges img { height: 24px; width: 24px; }
 
 /* Buttons */
-@buttons_background_image: url('@{images_path}/gradients/light.png');
+@buttons_background_image: none; /* Removed gradient */
 @buttons_background_attachment: @empty;
-@buttons_background_repeat: repeat-x;
+@buttons_background_repeat: no-repeat; /* Changed to no-repeat */
 @buttons_background_position: center center;
-@buttons_border: 1px solid darken(@buttons_background_color, 20%);
-@buttons_border_radius: 5px;
-@buttons_text_font: 12px Verdana, Arial;
+@buttons_border: 1px solid darken(@buttons_background_color, 10%); /* Adjusted border color */
+@buttons_border_radius: @border-radius-medium; /* Adjusted to medium radius */
+@buttons_text_font: 14px "SF-Pro", sans-serif; /* Adjusted font size and family */
 @buttons_text_decoration: none;
-@buttons_hover_background: lighten(@buttons_background_color, 5%) url('@{images_path}/gradients/top-light-40-trans.png') center repeat-x;
-@buttons_hover_border: 1px solid darken(@buttons_background_color, 20%);
-@buttons_hover_text_color: lighten(@buttons_text_color, 20%);
+@buttons_hover_background: lighten(@buttons_background_color, 5%); /* Adjusted hover background */
+@buttons_hover_border: 1px solid darken(@buttons_background_color, 15%); /* Adjusted hover border */
+@buttons_hover_text_color: @text-color-light; /* Kept light text color */
 @buttons_hover_text_font: @buttons_text_font;
 @buttons_hover_text_decoration: @buttons_text_decoration;
-@buttons_active_background: @container_highlight_color;
-@buttons_active_border: 1px solid darken(@buttons_background_color, 20%);
-@buttons_active_text_color: @link_color;
+@buttons_active_background: darken(@buttons_background_color, 5%); /* Darkened active background */
+@buttons_active_border: 1px solid darken(@buttons_background_color, 20%); /* Darkened active border */
+@buttons_active_text_color: @text-color-light; /* Kept light text color */
 @buttons_active_text_font: @buttons_text_font;
 @buttons_active_text_decoration: @buttons_text_decoration;
-.button, a.button, input[type="submit"], input[type="button"], button { color: @buttons_text_color; font: @buttons_text_font; text-decoration: @buttons_text_decoration; background-color: @buttons_background_color; background-image: @buttons_background_image; background-attachment: @buttons_background_attachment; background-repeat: @buttons_background_repeat; background-position: @buttons_background_position; border: @buttons_border; .rounded-corners(@buttons_border_radius); min-height: 20px; line-height: 20px !important; padding: 2px 0px; display: inline-block; vertical-align: middle; margin-left: 3px; cursor: pointer; white-space: nowrap; }
-.button:hover, input[type="submit"]:hover, input[type="button"]:hover, button:hover { color: @buttons_hover_text_color; font: @buttons_hover_text_font; text-decoration: @buttons_hover_text_decoration; background: @buttons_hover_background; border: @buttons_hover_border; }
+.button, a.button, input[type="submit"], input[type="button"], button { color: @buttons_text_color; font: @buttons_text_font; text-decoration: @buttons_text_decoration; background-color: @buttons_background_color; background-image: @buttons_background_image; background-attachment: @buttons_background_attachment; background-repeat: @buttons_background_repeat; background-position: @buttons_background_position; border: @buttons_border; .rounded-corners(@buttons_border_radius); min-height: 20px; line-height: 20px !important; padding: 10px 18px; /* Adjusted padding */ display: inline-block; vertical-align: middle; margin-left: 3px; cursor: pointer; white-space: nowrap; transition: background-color 0.2s ease, filter 0.2s ease, transform 0.2s ease; /* Added transitions */ }
+.button:hover, input[type="submit"]:hover, input[type="button"]:hover, button:hover { color: @buttons_hover_text_color; font: @buttons_hover_text_font; text-decoration: @buttons_hover_text_decoration; background: @buttons_hover_background; border: @buttons_hover_border; filter: brightness(1.1); /* Added brightness filter */ transform: translateY(-2px); /* Added slight lift */ }
 .button:active, input[type="submit"]:active, input[type="button"]:active, button:active, .shoutbox_refresh_button.active, .liked.likes-button, .button.state-selected { color: @buttons_active_text_color; font: @buttons_active_text_font; text-decoration: @buttons_active_text_decoration; background: @buttons_active_background; border: @buttons_active_border; }
-a.button { padding: 2px 6px; }
+a.button { padding: 10px 18px; /* Adjusted padding */ }
 .button .status { padding: 0 6px 0 2px; .rounded-corners(0); border: @buttons_border; border-width: 0px 1px 0px 0px; float: left; overflow: hidden; word-wrap: break-word; white-space: nowrap; }
 .button .status img { display: block; margin-top: 2px; position: relative; left: 2px; }
 .button .icon { padding: 1px 2px 1px 1px; border: 0; float: left; line-height: normal !important; }
-input[type="submit"], input[type="button"], button { padding: 2px 6px; min-height: 26px; }
+input[type="submit"], input[type="button"], button { padding: 10px 18px; /* Adjusted padding */ min-height: 26px; }
 .button-x { position: absolute; top: 50%; right: 3px; margin-top: -8px; cursor: pointer; display: block; text-indent: -9999px; width: 16px; height: 16px; background: url('@{images_path}/icons-default.png') -16px -32px no-repeat; }
 .button-x:hover { background: url('@{images_path}/icons-default.png') 0px -32px no-repeat; }
 .button.post-options { padding: 2px 0 2px 0; }
 .reply_button { float: right; }
 
 /* Forms */
-@forms_field_background: #FFFFFF;
-@forms_field_border: @empty;
-@forms_field_border_radius: @empty;
-@forms_field_text_color: @empty;
-@forms_field_text_font: @empty;
-@forms_area_background: @empty;
-@forms_area_border: @empty;
-@forms_area_border_radius: @empty;
-@forms_area_text_color: @empty;
-@forms_area_text_font: @empty;
-@forms_select_background: @empty;
-@forms_select_border: @empty;
-@forms_select_border_radius: @empty;
-@forms_select_text_color: @empty;
-@forms_select_text_font: @empty;
-input[type="text"], input[type="email"], input[type="password"] { color: @forms_field_text_color; font: @forms_field_text_font; background: @forms_field_background; border: @forms_field_border; .rounded-corners(@forms_field_border_radius); width: 300px; height: 20px; padding: 2px; }
-textarea { color: @forms_area_text_color; font: @forms_area_text_font; background: @forms_area_background; border: @forms_area_border; .rounded-corners(@forms_area_border_radius); resize: none; }
-select { color: @forms_select_text_color; font: @forms_select_text_font; background-color: @forms_select_background; border: @forms_select_border; .rounded-corners(@forms_select_border_radius); height: 26px; padding: 2px; }
+@forms_field_background: @card-header-bg-color; /* Changed to card header background */
+@forms_field_border: 1px solid @border-color-dark; /* Changed to dark border */
+@forms_field_border_radius: @border-radius-small; /* Adjusted to small radius */
+@forms_field_text_color: @text-color-light; /* Changed to light text color */
+@forms_field_text_font: 15px "SF-Pro", sans-serif; /* Adjusted font and size */
+@forms_area_background: @card-header-bg-color; /* Changed to card header background */
+@forms_area_border: 1px solid @border-color-dark; /* Changed to dark border */
+@forms_area_border_radius: @border-radius-small; /* Adjusted to small radius */
+@forms_area_text_color: @text-color-light; /* Changed to light text color */
+@forms_area_text_font: 15px "SF-Pro", sans-serif; /* Adjusted font and size */
+@forms_select_background: @card-header-bg-color; /* Changed to card header background */
+@forms_select_border: 1px solid @border-color-dark; /* Changed to dark border */
+@forms_select_border_radius: @border-radius-small; /* Adjusted to small radius */
+@forms_select_text_color: @text-color-light; /* Changed to light text color */
+@forms_select_text_font: 15px "SF-Pro", sans-serif; /* Adjusted font and size */
+input[type="text"], input[type="email"], input[type="password"] { color: @forms_field_text_color; font: @forms_field_text_font; background: @forms_field_background; border: @forms_field_border; .rounded-corners(@forms_field_border_radius); width: 300px; height: 30px; /* Adjusted height */ padding: 8px 12px; /* Adjusted padding */ box-sizing: border-box; /* Ensure padding is included in width */ }
+textarea { color: @forms_area_text_color; font: @forms_area_text_font; background: @forms_area_background; border: @forms_area_border; .rounded-corners(@forms_area_border_radius); resize: vertical; /* Allow vertical resize */ padding: 8px 12px; /* Adjusted padding */ box-sizing: border-box; /* Ensure padding is included in width */ }
+select { color: @forms_select_text_color; font: @forms_select_text_font; background-color: @forms_select_background; border: @forms_select_border; .rounded-corners(@forms_select_border_radius); height: 35px; /* Adjusted height */ padding: 8px 12px; /* Adjusted padding */ box-sizing: border-box; /* Ensure padding is included in width */ }
 input[type="text"].short { width: 50px; }
 input[type="text"].search-input { width: inherit; }
 input.date { width: 77px; }
@@ -1261,48 +1384,48 @@ input.time { width: 55px; }
 .setting-wrapper input { vertical-align: middle; }
 
 /* Labels */
-@labels_weight: bold;
-@labels_size: 80%;
-@labels_case: none;
+@labels_weight: 600; /* Adjusted to match main.css */
+@labels_size: 90%; /* Adjusted size */
+@labels_case: uppercase; /* Uppercase for labels */
 @labels_caps: normal;
-.ui-label { font-size: @labels_size; font-weight: @labels_weight; text-transform: @labels_case; font-variant: @labels_caps; position: relative; top: -1px; margin: 0 5px 0 0; display: inline; }
+.ui-label { font-size: @labels_size; font-weight: @labels_weight; text-transform: @labels_case; font-variant: @labels_caps; position: relative; top: -1px; margin: 0 5px 0 0; display: inline; color: @kz-orange; /* Changed label color to orange */ }
 .label-row { height: 20px; line-height: 20px !important; margin: 10px 0; clear: left; }
 .label-row * { float: left; }
 .label-row .ui-label, .label-row span.label-delete-button { margin-bottom: -5px; margin-left: 5px; }
-#manage-labels-container .style-wrapper .color_input { border: 1px solid #AAAAAA; }
-#manage-labels-container .style-wrapper .color-picker { border: 1px solid #AAAAAA; background: #EEEEEE; .rounded-corners(0, 5px, 5px, 0); }
-#manage-labels-container .style-wrapper .color-picker-preview { border: 1px solid #AAAAAA; border-right: none; }
+#manage-labels-container .style-wrapper .color_input { border: 1px solid @border-color-dark; /* Changed border color */ }
+#manage-labels-container .style-wrapper .color-picker { border: 1px solid @border-color-dark; /* Changed border color */ background: @card-header-bg-color; /* Changed background */ .rounded-corners(0, @border-radius-medium, @border-radius-medium, 0); } /* Adjusted border-radius */
+#manage-labels-container .style-wrapper .color-picker-preview { border: 1px solid @border-color-dark; /* Changed border color */ border-right: none; }
 
 /* Quotes */
-@quotes_background: @empty;
-@quotes_border: 2px solid @container_inner_border_color;
-@quotes_border_radius: 10px;
-@quotes_sub_background: @quotes_background;
-@quotes_sub_border: @quotes_border;
-@quotes_sub_border_radius: @quotes_border_radius;
-#content .content .quote div.quote_body { background: @quotes_background; border: @quotes_border; .rounded-corners(@quotes_border_radius); margin-top: 7px; padding: 10px 10px; }
+@quotes_background: @darker-section-bg-color; /* Changed to darker section background */
+@quotes_border: 2px solid @border-color-dark; /* Changed to dark border */
+@quotes_border_radius: @border-radius-medium; /* Adjusted to medium radius */
+@quotes_sub_background: @section-bg-color; /* Changed to section background */
+@quotes_sub_border: 2px solid @border-color-dark; /* Changed to dark border */
+@quotes_sub_border_radius: @border-radius-medium; /* Adjusted to medium radius */
+#content .content .quote div.quote_body { background: @quotes_background; border: @quotes_border; .rounded-corners(@quotes_border_radius); margin-top: 7px; padding: 10px 10px; color: @text-color-medium; /* Added text color */ }
 #content .content .quote div.quote div.quote_body { background: @quotes_sub_background; border: @quotes_sub_border; .rounded-corners(@quotes_sub_border_radius); }
 .quote { margin: 0 10px; padding-bottom: 10px; position: relative; top: 0px; }
 .quote div.quote_avatar_container { float: left; }
 .quote div.no_avatar_placeholder { display: inline-block; height: 30px; width: 30px; position: absolute; top: 14px; left: 4px; }
-.quote div.quote_header { display: block; margin: 7px 0px 16px 35px; }
+.quote div.quote_header { display: block; margin: 7px 0px 16px 35px; color: @text-color-light; /* Added text color */ }
 .quote.no_header { padding-top: 10px; }
 
 /* Info Centers */
-@info_background: @empty;
-@info_inner_border: 1px solid @container_inner_border_color;
-@info_text_color: @container_text_color_1;
-@info_text_font: @empty;
-@info_links_color: @container_links_color;
-@info_links_font: @empty;
-@info_links_decoration: @empty;
-@info_titles_color: @empty;
-@info_titles_font: @empty;
-.stats table { background: @info_background; width: 100%; }
+@info_background: @section-bg-color; /* Changed to section background */
+@info_inner_border: 1px solid @border-color-dark; /* Changed to dark border */
+@info_text_color: @text-color-medium; /* Changed to medium text color */
+@info_text_font: 90% @default_forum_text_font_family; /* Adjusted font size */
+@info_links_color: @kz-orange; /* Changed to orange */
+@info_links_font: 100% @default_forum_text_font_family; /* Adjusted font */
+@info_links_decoration: none;
+@info_titles_color: @text-color-light; /* Changed to light text color */
+@info_titles_font: 110% @default_forum_text_font_family; /* Adjusted font size */
+.stats table { background: @info_background; width: 100%; border-radius: @border-radius-medium; /* Added border-radius */ overflow: hidden; /* For rounded corners */ }
 .stats .content > table > tbody > tr > td { border: @info_inner_border; border-right-width: 0px; border-bottom-width: 0px; width: 43%; }
 .stats .content { color: @info_text_color; font: @info_text_font; }
 .stats .content a { color: @info_links_color; font: @info_links_font; text-decoration: @info_links_decoration; }
-.stats th { color: @info_titles_color; font: @info_titles_font; text-align: left; }
+.stats th { color: @info_titles_color; font: @info_titles_font; text-align: left; padding: 10px; /* Added padding */ background-color: @card-header-bg-color; /* Added background */ }
 .stats .icon { width: 70px; text-align: center; vertical-align: middle; }
 .stats .info { padding: 10px 10px 10px 0px; }
 .stats .content > table { width: 100%; table-layout: auto; }
@@ -1311,40 +1434,40 @@ input.time { width: 55px; }
 .stats .content > table > tbody > tr:first-child > td { border-top-width: 0px; }
 
 /* Shoutbox */
-@shoutbox_message_background: @empty;
-@shoutbox_message_border: @empty;
-@shoutbox_message_border_radius: 5px;
-@shoutbox_message_text_color: @empty;
-@shoutbox_message_text_font: @empty;
-@shoutbox_shouts_background: @empty;
-@shoutbox_shouts_border: 1px solid @container_inner_border_color;
-@shoutbox_shouts_border_radius: 5px;
-@shoutbox_shouts_text_color: @empty;
-@shoutbox_shouts_text_font: @empty;
-@shoutbox_shouts_edit_color: @empty;
+@shoutbox_message_background: @darker-section-bg-color; /* Changed to darker section background */
+@shoutbox_message_border: 1px solid @border-color-dark; /* Changed to dark border */
+@shoutbox_message_border_radius: @border-radius-medium; /* Adjusted to medium radius */
+@shoutbox_message_text_color: @text-color-medium; /* Changed to medium text color */
+@shoutbox_message_text_font: 90% @default_forum_text_font_family; /* Adjusted font size */
+@shoutbox_shouts_background: @section-bg-color; /* Changed to section background */
+@shoutbox_shouts_border: 1px solid @border-color-dark; /* Changed to dark border */
+@shoutbox_shouts_border_radius: @border-radius-medium; /* Adjusted to medium radius */
+@shoutbox_shouts_text_color: @text-color-medium; /* Changed to medium text color */
+@shoutbox_shouts_text_font: 90% @default_forum_text_font_family; /* Adjusted font size */
+@shoutbox_shouts_edit_color: @kz-orange; /* Changed to orange */
 @shoutbox_shouts_edit_font: 85% @default_forum_text_font_family;
-@shoutbox_shouts_edit_decoration: @empty;
-@shoutbox_shouts_delete_background: @empty;
-@shoutbox_shouts_delete_border: 1px solid @container_inner_border_color;
-@shoutbox_shouts_delete_border_radius: 5px;
-@shoutbox_shouts_delete_text_color: @container_text_color_1;
+@shoutbox_shouts_edit_decoration: underline; /* Added underline */
+@shoutbox_shouts_delete_background: @card-header-bg-color; /* Changed to card header background */
+@shoutbox_shouts_delete_border: 1px solid @border-color-dark; /* Changed to dark border */
+@shoutbox_shouts_delete_border_radius: @border-radius-medium; /* Adjusted to medium radius */
+@shoutbox_shouts_delete_text_color: @text-color-light; /* Changed to light text color */
 @shoutbox_shouts_delete_text_font: bold 100% @default_forum_text_font_family;
 @shoutbox_shouts_delete_text_decoration: none;
 @shoutbox_shouts_selected_background: @container_highlight_color;
-@shoutbox_reply_background: @empty;
-@shoutbox_reply_border: 1px solid @container_inner_border_color;
-@shoutbox_reply_border_radius: 5px;
-@shoutbox_reply_counter_color: @container_text_color_1;
+@shoutbox_reply_background: @darker-section-bg-color; /* Changed to darker section background */
+@shoutbox_reply_border: 1px solid @border-color-dark; /* Changed to dark border */
+@shoutbox_reply_border_radius: @border-radius-medium; /* Adjusted to medium radius */
+@shoutbox_reply_counter_color: @text-color-dark; /* Changed to dark text color */
 @shoutbox_reply_counter_font: 85% @default_forum_text_font_family;
-.shoutbox_welcome_message { color: @shoutbox_message_text_color; font: @shoutbox_message_text_font; background: @shoutbox_message_background; border: @shoutbox_message_border; .rounded-corners(@shoutbox_message_border_radius); margin-bottom: 10px; }
-.shoutbox_messages .shoutbox-post { color: @shoutbox_shouts_text_color; font: @shoutbox_shouts_text_font; background: @shoutbox_shouts_background; border: @shoutbox_shouts_border; .rounded-corners(@shoutbox_shouts_border_radius); text-align: left; position: relative; overflow: hidden; margin-top: 10px; margin-right: 10px; padding: 5px 15px 5px 10px; }
+.shoutbox_welcome_message { color: @shoutbox_message_text_color; font: @shoutbox_message_text_font; background: @shoutbox_message_background; border: @shoutbox_message_border; .rounded-corners(@shoutbox_message_border_radius); margin-bottom: 10px; padding: 15px; /* Added padding */ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Added shadow */ }
+.shoutbox_messages .shoutbox-post { color: @shoutbox_shouts_text_color; font: @shoutbox_shouts_text_font; background: @shoutbox_shouts_background; border: @shoutbox_shouts_border; .rounded-corners(@shoutbox_shouts_border_radius); text-align: left; position: relative; overflow: hidden; margin-top: 10px; margin-right: 10px; padding: 10px 15px; /* Adjusted padding */ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow */ }
 .shoutbox_messages .shoutbox_edit_button { color: @shoutbox_shouts_edit_color; font: @shoutbox_shouts_edit_font; text-decoration: @shoutbox_shouts_edit_decoration; display: inline-block; width: 32px; margin-right: 5px; visibility: visible; }
 .shoutbox_messages .hidden { visibility: hidden; }
 .shoutbox_messages .shoutbox_delete_button { color: @shoutbox_shouts_delete_text_color; font: @shoutbox_shouts_delete_text_font; text-decoration: @shoutbox_shouts_delete_text_decoration; background: @shoutbox_shouts_delete_background; border: @shoutbox_shouts_delete_border; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; position: absolute; right: -7px; top: 0; width: 15px; cursor: pointer; margin-left: 20px; margin-top: 0px; padding: 3px; height: 100%; display: inline-block; }
 .shoutbox .state-selected { background: @shoutbox_shouts_selected_background; }
-.shoutbox_form { background: @shoutbox_reply_background; border: @shoutbox_reply_border; .rounded-corners(@shoutbox_reply_border_radius); padding: 10px; height: 100px; }
+.shoutbox_form { background: @shoutbox_reply_background; border: @shoutbox_reply_border; .rounded-corners(@shoutbox_reply_border_radius); padding: 15px; /* Adjusted padding */ height: auto; /* Changed height to auto */ }
 .shoutbox_form .shoutbox_counter { color: @shoutbox_reply_counter_color; font: @shoutbox_reply_counter_font; float: right; margin-top: -5px; }
-.shoutbox_form textarea.gray { color: #666666; }
+.shoutbox_form textarea.gray { color: @text-color-dark; /* Changed to dark text color */ }
 .shoutbox_messages { overflow-y: scroll; text-align: center; position: relative; }
 .shoutbox .content { padding: 10px; }
 .shoutbox_messages .shoutbox-post:first-child { margin-top: 0px; }
@@ -1359,7 +1482,7 @@ input.time { width: 55px; }
 .shoutbox_form ul.tools { white-space: nowrap; display: inline-block; }
 .shoutbox_form ul.tools li { float: left; margin: 0; padding: 0; .rounded-corners(0px); border: 0; height: 22px; width: 26px; text-align: center; line-height: 18px !important; }
 .shoutbox_form ul.tools li img { padding: 0; }
-.shoutbox_form textarea { height: 38px; width: 100%; margin-right: 0px; margin-bottom: 5px; margin-top: 5px; position: inherit; .box-sizing(); }
+.shoutbox_form textarea { height: 60px; /* Adjusted height */ width: 100%; margin-right: 0px; margin-bottom: 5px; margin-top: 5px; position: inherit; .box-sizing(); }
 .shoutbox_form .shoutbox_post_button { margin-left: 0px; }
 .shoutbox_form .shoutbox_cancel_button { vertical-align: bottom; }
 .shoutbox_name { padding: 10px 0; height: 22px; }
@@ -1380,7 +1503,7 @@ input.time { width: 55px; }
 .legend .new-icon { display: block; }
 
 /* Quick Reply */
-.quick-reply textarea { border-width: 1px; border-style: solid; border-color: @container_inner_border_color; height: 150px; padding: 5px; width: 100%; resize: none; .box-sizing(); }
+.quick-reply textarea { border-width: 1px; border-style: solid; border-color: @container_inner_border_color; height: 150px; padding: 5px; width: 100%; resize: none; .box-sizing(); background-color: @card-header-bg-color; /* Added background */ color: @text-color-light; /* Added text color */ .rounded-corners(@border-radius-medium); /* Added border-radius */ }
 .quick-reply .content { padding: 10px; }
 .quick-reply .message { margin-bottom: 10px; }
 .quick-reply .guest_name { padding: 0px 10px 10px 0px; vertical-align: middle; }
@@ -1390,48 +1513,48 @@ input.time { width: 55px; }
 /* Posting Page */
 @smiles_menu_width: 280px;
 @smile_padding: 5px;
-.wysiwyg-area label { font-weight: 800; }
-.wysiwyg-area .outline { padding: 10px; border-width: 1px; border-style: solid; border-color: @container_inner_border_color; .rounded-corners(); }
+.wysiwyg-area label { font-weight: 800; color: @text-color-light; /* Added text color */ }
+.wysiwyg-area .outline { padding: 10px; border-width: 1px; border-style: solid; border-color: @container_inner_border_color; .rounded-corners(@border-radius-medium); } /* Adjusted border-radius */
 .wysiwyg-area .content { padding: 10px 10px 0px 10px; }
 .wysiwyg-area .content > form > div { margin-bottom: 10px; }
 .wysiwyg-area .subject_line .controls { float: right; }
 .wysiwyg-area .subject_line .subject_input { overflow: hidden; padding-right: 13px; }
-.wysiwyg-area .subject_line input { width: 100%; }
+.wysiwyg-area .subject_line input { width: 100%; background-color: @card-header-bg-color; /* Added background */ color: @text-color-light; /* Added text color */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-small); /* Added border-radius */ }
 .wysiwyg-area .subject_line table { width: 100%; table-layout: auto; }
 .wysiwyg-area .subject_line .subject_input { line-height: 28px !important; }
 .wysiwyg-area .subject_line table .subject { width: 70px; }
 .wysiwyg-area .end-date, .wysiwyg-area .attachment, .new-area .captcha { display: none; }
 .wysiwyg-area .poll .poll-options { line-height: 30px !important; }
-.wysiwyg-area .poll [name="poll_max_answers"] { width: 25px; }
+.wysiwyg-area .poll [name="poll_max_answers"] { width: 25px; background-color: @card-header-bg-color; /* Added background */ color: @text-color-light; /* Added text color */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-small); /* Added border-radius */ }
 .wysiwyg-area .poll table { width: 100%; table-layout: auto; }
-.wysiwyg-area .poll td { vertical-align: top; padding: 5px 10px 5px 0px; line-height: 230%; }
-.wysiwyg-area .poll th { text-align: left; padding-bottom: 5px; }
+.wysiwyg-area .poll td { vertical-align: top; padding: 5px 10px 5px 0px; line-height: 230%; color: @text-color-medium; /* Added text color */ }
+.wysiwyg-area .poll th { text-align: left; padding-bottom: 5px; color: @text-color-light; /* Added text color */ }
 .wysiwyg-area .submit { height: 32px; vertical-align: middle; line-height: 28px !important; }
-.ui-wysiwyg .button { border: none; margin: 0; padding: 0; .rounded-corners(0px); color: #000000; background: none; }
+.ui-wysiwyg .button { border: none; margin: 0; padding: 0; .rounded-corners(0px); color: @text-color-light; /* Changed to light text color */ background: none; }
 .ui-wysiwyg .button-fontName, .ui-wysiwyg .button-fontSize { background-color: transparent; }
 .ui-wysiwyg .ui-selectMenu { line-height: normal; }
-.ui-wysiwyg .ui-selectMenu-box { height: 20px; }
-.ui-wysiwyg .ui-selectMenu-box .status { border: none; line-height: 20px !important; padding: 0; width: auto; }
+.ui-wysiwyg .ui-selectMenu-box { height: 20px; background-color: @card-header-bg-color; /* Added background */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-small); /* Added border-radius */ }
+.ui-wysiwyg .ui-selectMenu-box .status { border: none; line-height: 20px !important; padding: 0; width: auto; color: @text-color-light; /* Added text color */ }
 .ui-wysiwyg .ui-selectMenu-box .icon { border: none; }
 .ui-wysiwyg .ui-selectMenu-box .arrow { height: 20px; }
 .new-area .user-search .content { padding: 0px 15px 0px 0px; }
-.new-area .recipients h4 { display: block; margin-bottom: 3px; }
-.new-area .guest_name input { width: 485px; }
-.wysiwyg-area .edit_reason > label { float: left; line-height: 28px; width: 180px; }
+.new-area .recipients h4 { display: block; margin-bottom: 3px; color: @text-color-light; /* Added text color */ }
+.new-area .guest_name input { width: 485px; background-color: @card-header-bg-color; /* Added background */ color: @text-color-light; /* Added text color */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-small); /* Added border-radius */ }
+.wysiwyg-area .edit_reason > label { float: left; line-height: 28px; width: 180px; color: @text-color-light; /* Added text color */ }
 .wysiwyg-area .edit_reason > div { margin-left: 180px; margin-right: 8px; }
-.wysiwyg-area .edit_reason > div > input { width: 100%; }
+.wysiwyg-area .edit_reason > div > input { width: 100%; background-color: @card-header-bg-color; /* Added background */ color: @text-color-light; /* Added text color */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-small); /* Added border-radius */ }
 .grp_recipients_div { display: none; }
 .grp_recipients_div a { display: block; clear: both; padding-top: 10px; }
 .loadingOverlay { background-image: url('@{images_path}/loader/processing.gif'); background-position: center center; background-repeat: no-repeat; position: absolute; }
 #announcement-options { display: none; width: 500px; }
-.smiley-menu { width: @smiles_menu_width; }
-.smiley-menu > li > a { padding: @smile_padding; }
-.smiley-menu > li:hover > a { padding: @smile_padding; }
+.smiley-menu { width: @smiles_menu_width; background-color: @section-bg-color; /* Added background */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-medium); /* Added border-radius */ }
+.smiley-menu > li > a { padding: @smile_padding; color: @text-color-medium; /* Added text color */ }
+.smiley-menu > li:hover > a { padding: @smile_padding; background-color: @card-header-bg-color; /* Added hover background */ }
 
 /* Editing Area */
 
-.ui-wysiwyg .editors { border-width: 1px; border-style: solid; border-color: @container_inner_border_color; }
-.wysiwyg-tabs li { float: left; position: relative; bottom: 1px; margin: 1px 2px 0 0; list-style: none; background: @tabs_unselected_background; border: 1px solid @container_inner_border_color; border-top-width: 0px; .rounded-corners(0, 0, 5px, 5px); }
+.ui-wysiwyg .editors { border-width: 1px; border-style: solid; border-color: @container_inner_border_color; .rounded-corners(@border-radius-medium); /* Added border-radius */ }
+.wysiwyg-tabs li { float: left; position: relative; bottom: 1px; margin: 1px 2px 0 0; list-style: none; background: @tabs_unselected_background; border: 1px solid @container_inner_border_color; border-top-width: 0px; .rounded-corners(0, 0, @border-radius-medium, @border-radius-medium); /* Adjusted border-radius */ }
 .wysiwyg-tabs li:hover { background: @tabs_hover_background; border: @tabs_hover_border; }
 .wysiwyg-tabs li a { color: @tabs_unselected_text_color; font: @tabs_unselected_text_font; text-decoration: @tabs_unselected_text_decoration; float: left; padding: 5px 15px; }
 .wysiwyg-tabs li.ui-active { background-color: @posts_odd_background_color; background-image: @posts_odd_background_image; background-attachment: @posts_odd_background_attachment; background-repeat: @posts_odd_background_repeat; background-position: @posts_odd_background_position; border: @tabs_selected_border; margin-top: 0px; padding-top: 1px; }
@@ -1442,8 +1565,8 @@ input.time { width: 55px; }
 
 @bbcode_editor_background_color: @posts_odd_background_color;
 @bbcode_editor_text_color: @posts_odd_text_color;
-@bbcode_editor_text_font_family: @empty;
-.ui-wysiwyg .editors .bbcode-editor textarea { color: @bbcode_editor_text_color; font-family: @bbcode_editor_text_font_family; background-color: @bbcode_editor_background_color; }
+@bbcode_editor_text_font_family: "SF-Pro", sans-serif; /* Adjusted font family */
+.ui-wysiwyg .editors .bbcode-editor textarea { color: @bbcode_editor_text_color; font-family: @bbcode_editor_text_font_family; background-color: @bbcode_editor_background_color; border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-small); /* Added border-radius */ padding: 10px; /* Added padding */ }
 
 /* Preview Editor */
 @ve_posts_odd_text_color: @posts_odd_text_color;
@@ -1469,20 +1592,21 @@ input.time { width: 55px; }
 @ve_posts_code_text_font: @posts_code_text_font;
 
 /* Guests Online Dialogs */
-#guests-online table { width: 150px; margin: auto; }
-#guests-online th, #guests-online td { padding: 2px 0; text-align: @members_align_name; }
+#guests-online table { width: 150px; margin: auto; background-color: @section-bg-color; /* Added background */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-medium); /* Added border-radius */ }
+#guests-online th, #guests-online td { padding: 2px 0; text-align: @members_align_name; color: @text-color-medium; /* Added text color */ }
+#guests-online th { background-color: @card-header-bg-color; /* Added background */ color: @text-color-light; /* Added text color */ }
 
 /* Login & Registration */
-#register-form table { table-layout: auto; }
-#register-form td { padding: 5px; }
+#register-form table { table-layout: auto; background-color: @section-bg-color; /* Added background */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-medium); /* Added border-radius */ padding: 15px; /* Added padding */ }
+#register-form td { padding: 5px; color: @text-color-medium; /* Added text color */ }
 #register-form td > * { vertical-align: middle; }
-#register-form textarea { height: 100px; width: 300px; }
-#register-form select { margin: 0; }
-#request-msg textarea { margin: 5px 0; height: 100px; width: 50%; }
-#forum-message-container { background: @container_background_color_2; color: @container_text_color_2; margin: 10px; padding: 10px; .rounded-corners(@content_area_border_radius); }
+#register-form textarea { height: 100px; width: 300px; background-color: @card-header-bg-color; /* Added background */ color: @text-color-light; /* Added text color */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-small); /* Added border-radius */ padding: 8px 12px; /* Added padding */ }
+#register-form select { margin: 0; background-color: @card-header-bg-color; /* Added background */ color: @text-color-light; /* Added text color */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-small); /* Added border-radius */ padding: 8px 12px; /* Added padding */ }
+#request-msg textarea { margin: 5px 0; height: 100px; width: 50%; background-color: @card-header-bg-color; /* Added background */ color: @text-color-light; /* Added text color */ border: 1px solid @border-color-dark; /* Added border */ .rounded-corners(@border-radius-small); /* Added border-radius */ padding: 8px 12px; /* Added padding */ }
+#forum-message-container { background: @container_background_color_2; color: @container_text_color_2; margin: 10px; padding: 10px; .rounded-corners(@content_area_border_radius); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Added shadow */ }
 
 /**************************************************************************
- *                             Browser Hacks                              *
+ * Browser Hacks                                *
  **************************************************************************/
 
 /* IE7 */
@@ -1578,6 +1702,145 @@ input.time { width: 55px; }
 .ie8 input[type="submit"], input[type="button"], button { min-height: 20px; }
 .ie8 .avatar-wrapper { display: block; position: relative;
 	img { .absolute-center; }
+}
+
+
+
+.c-footer {
+  display: none !important;
+}
+
+
+.form-container {
+    background-color: var(--website-bg-color);
+    padding: 30px;
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    color: var(--text-color-medium);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color-light);
+    font-weight: 600;
+}
+
+.form-container {
+    background-color: var(--website-bg-color);
+    padding: 30px;
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    color: var(--text-color-medium);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color-light);
+    font-weight: 600;
+}
+
+.form-container {
+    background-color: var(--website-bg-color);
+    padding: 30px;
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    color: var(--text-color-medium);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color-light);
+    font-weight: 600;
+}
+
+/* Styles for input fields (text, email, password, and generic inputs) */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input, /* Added this selector to target inputs without a specific type (defaults to text) */
+a input[type="text"],
+a input[type="email"],
+a input[type="password"],
+a input /* Added this selector for inputs within an 'a' tag without a specific type */ {
+    padding: 12px; /* Adjusted padding */
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius-small);
+    background-color: var(--card-header-bg-color);
+    color: var(--text-color-light);
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input::placeholder, /* Added placeholder for generic inputs */
+textarea::placeholder,
+a input[type="text"]::placeholder,
+a input[type="email"]::placeholder,
+a input[type="password"]::placeholder,
+a input::placeholder /* Added placeholder for generic inputs within an 'a' tag */ {
+    color: var(--text-color-dark);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input:focus, /* Added focus for generic inputs */
+textarea:focus,
+select:focus,
+a input[type="text"]:focus,
+a input[type="email"]:focus,
+a input[type="password"]:focus,
+a input:focus /* Added focus for generic inputs within an 'a' tag */ {
+    border-color: var(--kz-orange);
+    box-shadow: 0 0 0 3px rgba(251, 157, 76, 0.3);
+}
+
+
+
+/* Styles for select dropdown */
+select {
+    width: 100%;
+    padding: 12px; /* Adjusted padding */
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius-small);
+    background-color: var(--card-header-bg-color);
+    color: var(--text-color-light);
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box; /* Include padding in width */
+    appearance: none; /* Remove default select arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 18px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* IE9 */
