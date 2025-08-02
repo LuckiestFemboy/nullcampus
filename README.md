@@ -44,4 +44,4 @@ Nullcampus is an open community! We encourage you to:
 
 ---
 
-Thank you for being a part of the Nullcampus community!
+Thank you for being a part of the NullCampus community!
